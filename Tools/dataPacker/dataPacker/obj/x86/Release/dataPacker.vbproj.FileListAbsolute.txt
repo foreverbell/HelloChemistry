@@ -1,0 +1,11 @@
+C:\Users\ForeverBell\Documents\Visual Studio 2010\Projects\dataPacker\dataPacker\bin\Release\dataPacker.exe
+C:\Users\ForeverBell\Documents\Visual Studio 2010\Projects\dataPacker\dataPacker\bin\Release\dataPacker.pdb
+C:\Users\ForeverBell\Documents\Visual Studio 2010\Projects\dataPacker\dataPacker\bin\Release\dataPacker.xml
+C:\Users\ForeverBell\Documents\Visual Studio 2010\Projects\dataPacker\dataPacker\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\ForeverBell\Documents\Visual Studio 2010\Projects\dataPacker\dataPacker\obj\x86\Release\dataPacker.frmMain.resources
+C:\Users\ForeverBell\Documents\Visual Studio 2010\Projects\dataPacker\dataPacker\obj\x86\Release\dataPacker.Resources.resources
+C:\Users\ForeverBell\Documents\Visual Studio 2010\Projects\dataPacker\dataPacker\obj\x86\Release\GenerateResource-ResGen.read.1.tlog
+C:\Users\ForeverBell\Documents\Visual Studio 2010\Projects\dataPacker\dataPacker\obj\x86\Release\GenerateResource-ResGen.write.1.tlog
+C:\Users\ForeverBell\Documents\Visual Studio 2010\Projects\dataPacker\dataPacker\obj\x86\Release\dataPacker.exe
+C:\Users\ForeverBell\Documents\Visual Studio 2010\Projects\dataPacker\dataPacker\obj\x86\Release\dataPacker.xml
+C:\Users\ForeverBell\Documents\Visual Studio 2010\Projects\dataPacker\dataPacker\obj\x86\Release\dataPacker.pdb

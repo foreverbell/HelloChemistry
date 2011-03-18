@@ -1,0 +1,67 @@
+﻿
+Imports HelloChemistry.data
+
+Namespace element
+
+    Public Class clsElementManager
+
+        Private Const ELEMENT_COUNT As Integer = 112
+
+        Private Shared ReadOnly _instance As New clsElementManager
+        Private _elementList As New HashSet(Of clsElement)
+
+        Public Shared ReadOnly Property instance As clsElementManager
+            Get
+                Return _instance
+            End Get
+        End Property
+
+        Public Overloads ReadOnly Property element(ByVal index As Integer) As clsElement
+            Get
+                For Each ele As clsElement In _elementList
+                    If (ele.index = index) Then
+                        Return ele
+                    End If
+                Next
+                Throw New ArgumentException
+            End Get
+        End Property
+
+        Public Overloads ReadOnly Property element(ByVal symbol As String) As clsElement
+            Get
+                For Each ele As clsElement In _elementList
+                    If (ele.symbol = symbol) Then
+                        Return ele
+                    End If
+                Next
+                Throw New ArgumentException
+            End Get
+        End Property
+
+        Private Sub initializeElement()
+            For index As Integer = 1 To ELEMENT_COUNT
+                Dim symbol As String
+                Dim name As String
+                Dim weight As Double
+                Dim electron As String
+
+                With clsDataReaderManager.instance
+                    symbol = Split(.dataReader(enumDataReaderArgment.elementSymbol).data(index), " ")(0)
+                    name = Split(.dataReader(enumDataReaderArgment.elementSymbol).data(index), " ")(1)
+                    weight = Val(.dataReader(enumDataReaderArgment.elementWeight).data(index))
+                    electron = .dataReader(enumDataReaderArgment.elementElectronShell).data(index)
+                End With
+
+                _elementList.Add(New clsElement(index, _
+                                                name, _
+                                                symbol, _
+                                                weight,
+                                                electron))
+            Next
+        End Sub
+
+        Private Sub New()
+            initializeElement()
+        End Sub
+    End Class
+End Namespace
