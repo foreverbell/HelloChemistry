@@ -4,7 +4,7 @@ Namespace data
 
         Private Shared ReadOnly _instance As New clsDataReaderManager
 
-        Private _dataReaderList As New HashSet(Of clsDataReader) From
+        Private ReadOnly _dataReaderList As New HashSet(Of clsDataReader) From
             {
                 New clsDataReader(enumDataReaderArgment.elementSymbol, My.Resources.resElement.symbol),
                 New clsDataReader(enumDataReaderArgment.elementWeight, My.Resources.resElement.weight),

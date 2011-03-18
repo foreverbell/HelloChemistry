@@ -86,6 +86,22 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="chemicalFormula\formulaToken\clsFormulaToken.vb" />
+    <Compile Include="chemicalFormula\formulaToken\clsTokenElement.vb" />
+    <Compile Include="chemicalFormula\formulaToken\clsTokenLeftBracket.vb" />
+    <Compile Include="chemicalFormula\formulaToken\clsTokenNumber.vb" />
+    <Compile Include="chemicalFormula\formulaToken\clsTokenRightBracket.vb" />
+    <Compile Include="chemicalFormula\formulaToken\enumFormulaToken.vb" />
+    <Compile Include="chemicalFormula\clsFormulaStream.vb" />
+    <Compile Include="chemicalFormula\formulaToken\formulaChar\clsFormulaChar.vb" />
+    <Compile Include="chemicalFormula\formulaToken\formulaChar\clsLeftBracket.vb" />
+    <Compile Include="chemicalFormula\formulaToken\formulaChar\clsLowerCase.vb" />
+    <Compile Include="chemicalFormula\formulaToken\formulaChar\clsNumber.vb" />
+    <Compile Include="chemicalFormula\formulaToken\formulaChar\clsRightBracket.vb" />
+    <Compile Include="chemicalFormula\formulaToken\formulaChar\clsUpperCase.vb" />
+    <Compile Include="chemicalFormula\formulaToken\formulaChar\enumFormulaChar.vb" />
+    <Compile Include="chemicalFormula\formulaToken\formulaChar\IFormulaChar.vb" />
+    <Compile Include="chemicalFormula\formulaToken\IFormulaToken.vb" />
     <Compile Include="data\clsDataReader.vb" />
     <Compile Include="data\clsDataReaderManager.vb" />
     <Compile Include="data\enumDataReaderArgment.vb" />
@@ -119,6 +135,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>resElement.resx</DependentUpon>
     </Compile>
+    <Compile Include="chemicalFormula\clsElementList.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
@@ -168,6 +185,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
