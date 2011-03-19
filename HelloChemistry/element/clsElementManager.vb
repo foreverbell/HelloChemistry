@@ -8,7 +8,7 @@ Namespace element
         Private Const ELEMENT_COUNT As Integer = 112
 
         Private Shared ReadOnly _instance As New clsElementManager
-        Private _elementList As New HashSet(Of clsElement)
+        Private _elementList As New List(Of clsElement)
 
         Public Shared ReadOnly Property instance As clsElementManager
             Get
@@ -23,7 +23,7 @@ Namespace element
                         Return ele
                     End If
                 Next
-                Throw New ArgumentException
+                Throw New Exception("No such a element with index " + index.ToString)
             End Get
         End Property
 
@@ -34,7 +34,7 @@ Namespace element
                         Return ele
                     End If
                 Next
-                Throw New ArgumentException
+                Throw New Exception("No such a element " + symbol)
             End Get
         End Property
 
