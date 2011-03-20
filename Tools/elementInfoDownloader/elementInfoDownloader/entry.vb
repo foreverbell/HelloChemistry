@@ -16,6 +16,8 @@ Module entry
         Dim weight As Double
         Dim symbol As String
         Dim name As String
+        Dim meltingPoint As Double
+        Dim boilingPoint As Double
     End Structure
 
     Private element(112) As elementType
@@ -51,13 +53,20 @@ Module entry
     Sub Main()
         Dim streamToWrite As New StreamWriter("symbol.txt", False)
         Dim streamToWriteWeight As New StreamWriter("weight.txt", False)
+        Dim streamToWriteMBPoint As New StreamWriter("melting.boiling.point.txt", False)
 
         For i As Integer = 1 To 112
 
-            Dim reg As New Regex("<p id=" + """" + "boxchemicalsymbol" + """" + ">([a-zA-Z+]+)</p><p id=" + """" + "boxelementname" + """" + ">([a-zA-Z+]+)</p><p id=" + """" + "boxatomicmass" + """" + ">([0-9/.+]+)</p>", RegexOptions.Singleline)
-            Dim match As Match = reg.Match(readHtml("http://education.jlab.org/itselemental/ele" + formatNumber(i) + ".html"))
+            Dim htmlCode As String = readHtml("http://education.jlab.org/itselemental/ele" + formatNumber(i) + ".html")
+
+            Dim reg As Regex
+            Dim match As Match
 
             With element(i)
+
+                reg = New Regex("<p id=" + """" + "boxchemicalsymbol" + """" + ">([a-zA-Z+]+)</p><p id=" + """" + "boxelementname" + """" + ">([a-zA-Z+]+)</p><p id=" + """" + "boxatomicmass" + """" + ">([0-9/.+]+)</p>", RegexOptions.Singleline)
+                match = reg.Match(htmlCode)
+
                 .index = i
                 .symbol = match.Groups(1).ToString
                 .name = match.Groups(2).ToString
@@ -66,6 +75,12 @@ Module entry
                 Else
                     .weight = Round(Val(match.Groups(3).Value), 0)
                 End If
+
+                reg = New Regex("<strong>Melting Point:</strong> (.*? K) .*?<strong>Boiling Point:</strong> (.*? K) .*?", RegexOptions.Singleline)
+                match = reg.Match(htmlCode)
+
+                .meltingPoint = Val(match.Groups(1).Value)
+                .boilingPoint = Val(match.Groups(2).Value)
 
                 Threading.Thread.Sleep(1000)
 
@@ -79,6 +94,10 @@ Module entry
                 streamToWriteWeight.Write(.weight.ToString)
                 streamToWriteWeight.WriteLine()
                 streamToWriteWeight.Flush()
+
+                streamToWriteMBPoint.Write(.meltingPoint.ToString + " " + .boilingPoint.ToString)
+                streamToWriteMBPoint.WriteLine()
+                streamToWriteMBPoint.Flush()
 
             End With
         Next
