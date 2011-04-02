@@ -44,20 +44,34 @@ Namespace element
                 Dim name As String
                 Dim weight As Double
                 Dim electron As String
+                Dim meltingPoint As Double
+                Dim boilingPoint As Double
 
                 With clsDataReaderManager.instance
                     symbol = Split(.dataReader(enumDataReaderArgment.elementSymbol).data(index), " ")(0)
                     name = Split(.dataReader(enumDataReaderArgment.elementSymbol).data(index), " ")(1)
                     weight = Val(.dataReader(enumDataReaderArgment.elementWeight).data(index))
                     electron = .dataReader(enumDataReaderArgment.elementElectronShell).data(index)
+                    meltingPoint = Split(.dataReader(enumDataReaderArgment.elementMeltingAndBoilingPoint).data(index), " ")(0)
+                    boilingPoint = Split(.dataReader(enumDataReaderArgment.elementMeltingAndBoilingPoint).data(index), " ")(1)
                 End With
 
-                _elementList.Add(New clsElement(index, _
-                                                name, _
-                                                symbol, _
+                _elementList.Add(New clsElement(index,
+                                                name,
+                                                symbol,
                                                 weight,
-                                                electron))
+                                                electron,
+                                                meltingPoint,
+                                                boilingPoint))
             Next
+
+            ' Dispose all
+            With clsDataReaderManager.instance
+                .dataReader(enumDataReaderArgment.elementSymbol).Dispose()
+                .dataReader(enumDataReaderArgment.elementWeight).Dispose()
+                .dataReader(enumDataReaderArgment.elementElectronShell).Dispose()
+                .dataReader(enumDataReaderArgment.elementMeltingAndBoilingPoint).Dispose()
+            End With
         End Sub
 
         Private Sub New()

@@ -93,6 +93,11 @@
     <Compile Include="chemicalFormula\parser\clsChemicalFormula4.vb" />
     <Compile Include="chemicalFormula\parser\clsChemicalFormula5.vb" />
     <Compile Include="chemicalFormula\clsChemicalFormula.vb" />
+    <Compile Include="general\INullable.vb" />
+    <Compile Include="general\Observer.vb" />
+    <Compile Include="general\Subject.vb" />
+    <Compile Include="temperature\clsNullTemperature.vb" />
+    <Compile Include="temperature\clsTemperature.vb" />
     <Compile Include="formulaToken\token\clsFormulaToken.vb" />
     <Compile Include="formulaToken\token\clsTokenElement.vb" />
     <Compile Include="formulaToken\token\clsTokenLeftBracket.vb" />
@@ -144,7 +149,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>resElement.resx</DependentUpon>
     </Compile>
-    <Compile Include="chemicalFormula\clsElementList.vb" />
+    <Compile Include="chemicalFormula\parser\clsElementList.vb" />
+    <Compile Include="temperature\clsTemperatureManager.vb" />
+    <Compile Include="temperature\enumTemperatureExpressionMode.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
@@ -163,9 +170,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="data\dat\element\melting.boiling.point.dat" />
     <None Include="data\dat\element\shell.dat" />
     <None Include="data\dat\element\symbol.dat" />
-    <None Include="data\dat\element\table.dat" />
+    <None Include="data\dat\periodicTable\table.dat" />
     <None Include="data\dat\element\weight.dat" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>

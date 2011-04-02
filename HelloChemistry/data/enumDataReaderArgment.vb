@@ -5,6 +5,7 @@ Namespace data
         elementSymbol
         elementWeight
         elementElectronShell
+        elementMeltingAndBoilingPoint
     End Enum
 
 End Namespace

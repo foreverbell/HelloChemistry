@@ -1,4 +1,6 @@
 ﻿
+Imports HelloChemistry.temperature
+
 Namespace element
     Public Class clsElement
 
@@ -7,6 +9,8 @@ Namespace element
         Private _symbol As String
         Private _weight As Double
         Private _electron As clsElementElectronShell
+        Private _meltingPoint As clsTemperature
+        Private _boilingPoint As clsTemperature
 
         Public ReadOnly Property index As Integer
             Get
@@ -38,16 +42,32 @@ Namespace element
             End Get
         End Property
 
-        Public Sub New(ByVal index As Integer, _
-                       ByVal name As String, _
-                       ByVal symbol As String, _
-                       ByVal weight As Double, _
-                       ByVal electron As String)
+        Public ReadOnly Property meltingPoint As clsTemperature
+            Get
+                Return _meltingPoint
+            End Get
+        End Property
+
+        Public ReadOnly Property boilingPoint As clsTemperature
+            Get
+                Return _boilingPoint
+            End Get
+        End Property
+
+        Public Sub New(ByVal index As Integer,
+                       ByVal name As String,
+                       ByVal symbol As String,
+                       ByVal weight As Double,
+                       ByVal electron As String,
+                       ByVal meltingPoint As Double,
+                       ByVal boilingPoint As Double)
             _index = index
             _name = name
             _symbol = symbol
             _weight = weight
             _electron = New clsElementElectronShell(electron)
+            _meltingPoint = clsTemperatureManager.instance.createTemperature(meltingPoint)
+            _boilingPoint = clsTemperatureManager.instance.createTemperature(boilingPoint)
         End Sub
     End Class
 End Namespace

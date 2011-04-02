@@ -4,22 +4,28 @@ Imports System.IO.Compression
 
 Namespace data
     Public Class clsDataReader
+        Implements IDisposable
 
-        Private _dataIndex As enumDataReaderArgment
+        Private _dataType As enumDataReaderArgment
         Private _numOfLines As Integer
         Private _lineData() As String
 
         Private Sub parseData(ByVal data As Byte())
-            Dim packStream As DeflateStream = New DeflateStream(New MemoryStream(data), CompressionMode.Decompress)
+            Dim mStream As New MemoryStream(data)
+            Dim packStream As DeflateStream = New DeflateStream(mStream, CompressionMode.Decompress)
             Dim streamToRead As StreamReader = New StreamReader(packStream)
 
             _lineData = Split(streamToRead.ReadToEnd, vbCrLf)
             _numOfLines = _lineData.GetLength(0)
+
+            mStream.Dispose()
+            packStream.Dispose()
+            streamToRead.Dispose()
         End Sub
 
-        Public ReadOnly Property dataIndex As Integer
+        Public ReadOnly Property dataType As Integer
             Get
-                Return _dataIndex
+                Return _dataType
             End Get
         End Property
 
@@ -35,9 +41,27 @@ Namespace data
             End Get
         End Property
 
-        Public Sub New(ByVal index As enumDataReaderArgment, ByVal data As Byte())
-            _dataIndex = index
+        Public Sub New(ByVal type As enumDataReaderArgment, ByVal data As Byte())
+            _dataType = type
             parseData(data)
         End Sub
+
+#Region "IDisposable Support"
+        Private disposedValue As Boolean
+
+        ' IDisposable
+        Protected Overridable Sub Dispose(ByVal disposing As Boolean)
+            If Not Me.disposedValue Then
+                Erase _lineData
+            End If
+            Me.disposedValue = True
+        End Sub
+
+        Public Sub Dispose() Implements IDisposable.Dispose
+            Dispose(True)
+            GC.SuppressFinalize(Me)
+        End Sub
+#End Region
+
     End Class
 End Namespace

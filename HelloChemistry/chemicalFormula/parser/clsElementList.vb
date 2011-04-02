@@ -1,7 +1,8 @@
 ﻿
 Imports HelloChemistry.element
 
-Namespace chemicalFormula
+Namespace chemicalFormula.parser
+
     Public Class clsElementList
         Private _elementTable As New Hashtable
 

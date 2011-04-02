@@ -1,5 +1,7 @@
 ﻿
 Imports HelloChemistry.chemicalFormula
+Imports HelloChemistry.element
+Imports HelloChemistry.temperature
 
 Public Class Form1
 
@@ -8,5 +10,12 @@ Public Class Form1
 
         Debug.Print("Fe2(SO4)3.5H2O mass: " + formula.mass.ToString)
 
+
+        Dim element As clsElement = clsElementManager.instance.element("Cu")
+        Debug.Print(element.meltingPoint.temperatureExpression)
+        clsTemperatureManager.instance.expressionMode = enumTemperatureExpressionMode.C
+        Debug.Print(element.meltingPoint.temperatureExpression)
+        element = clsElementManager.instance.element("Fe")
+        Debug.Print(element.meltingPoint.temperatureExpression)
     End Sub
 End Class

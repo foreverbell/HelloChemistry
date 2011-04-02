@@ -64,6 +64,13 @@ Namespace My.Resources
             End Set
         End Property
         
+        Friend Shared ReadOnly Property melting_boiling_point() As Byte()
+            Get
+                Dim obj As Object = ResourceManager.GetObject("melting_boiling_point", resourceCulture)
+                Return CType(obj,Byte())
+            End Get
+        End Property
+        
         Friend Shared ReadOnly Property shell() As Byte()
             Get
                 Dim obj As Object = ResourceManager.GetObject("shell", resourceCulture)
@@ -74,13 +81,6 @@ Namespace My.Resources
         Friend Shared ReadOnly Property symbol() As Byte()
             Get
                 Dim obj As Object = ResourceManager.GetObject("symbol", resourceCulture)
-                Return CType(obj,Byte())
-            End Get
-        End Property
-        
-        Friend Shared ReadOnly Property table() As Byte()
-            Get
-                Dim obj As Object = ResourceManager.GetObject("table", resourceCulture)
                 Return CType(obj,Byte())
             End Get
         End Property
