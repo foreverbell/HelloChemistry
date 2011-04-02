@@ -2,6 +2,7 @@
 '
 ' Data Packer for HelloChemistry
 ' Written by ForeverBell on Mar 18, 2011
+' Modifed on Apr 2, 2011
 '
 
 Imports System.IO
@@ -10,8 +11,8 @@ Imports System.IO.Compression
 Public Class frmMain
 
     Private Sub packFile(ByVal inFile As String, ByVal outFile As String)
-
-        Dim packStream As New DeflateStream(New FileStream(outFile, FileMode.Create), CompressionMode.Compress)
+        Dim outFileStream As New FileStream(outFile, FileMode.Create)
+        Dim packStream As New DeflateStream(outFileStream, CompressionMode.Compress)
         Dim inFileStream As New FileStream(inFile, FileMode.Open)
 
         Dim bytBuffer(inFileStream.Length) As Byte
@@ -22,6 +23,8 @@ Public Class frmMain
         MsgBox("Compressed " & inFile & " from " & inFileStream.Length() & " to " & packStream.BaseStream.Length() & " bytes. ")
 
         packStream.Close()
+        inFileStream.Close()
+        outFileStream.Close()
     End Sub
 
     Private Sub btnOpenFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnOpenFile.Click
