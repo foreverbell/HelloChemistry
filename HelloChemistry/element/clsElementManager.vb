@@ -23,7 +23,7 @@ Namespace element
                         Return ele
                     End If
                 Next
-                Throw New Exception("No such a element with index " + index.ToString)
+                Throw New ArgumentException("No such a element with index " + index.ToString)
             End Get
         End Property
 
@@ -34,7 +34,7 @@ Namespace element
                         Return ele
                     End If
                 Next
-                Throw New Exception("No such a element " + symbol)
+                Throw New ArgumentException("No such a element " + symbol)
             End Get
         End Property
 

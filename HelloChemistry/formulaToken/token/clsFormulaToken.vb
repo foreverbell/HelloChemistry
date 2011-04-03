@@ -8,7 +8,9 @@ Namespace formulaToken.token
                 New clsTokenNumber,
                 New clsTokenLeftBracket,
                 New clsTokenRightBracket,
-                New clsTokenPeriod
+                New clsTokenPeriod,
+                New clsTokenPlus,
+                New clsTokenEqual
             }
 
         Public Shared ReadOnly Property token(ByVal formula As String, ByVal position As Integer) As IFormulaToken
@@ -20,7 +22,7 @@ Namespace formulaToken.token
                         Return result
                     End If
                 Next
-                Throw New Exception("Bad token.")
+                Throw New ArgumentException("Bad token.")
             End Get
         End Property
     End Class

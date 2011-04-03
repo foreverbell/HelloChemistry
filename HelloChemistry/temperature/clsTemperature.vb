@@ -47,7 +47,7 @@ Namespace temperature
                     Case enumTemperatureExpressionMode.C
                         Return C.ToString & " °C"
                     Case Else
-                        Throw New Exception("should not be here")
+                        Throw New ArgumentException
                 End Select
             End Get
         End Property

@@ -86,6 +86,11 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="algorithm\clsGaussJordanElimination.vb" />
+    <Compile Include="chemicalEquation\clsChemicalEquation.vb" />
+    <Compile Include="chemicalEquation\parser\clsChemicalEquation1.vb" />
+    <Compile Include="chemicalEquation\parser\clsChemicalEquation2.vb" />
+    <Compile Include="chemicalEquation\parser\clsChemicalEquation3.vb" />
     <Compile Include="chemicalFormula\parser\clsChemicalFormula0.vb" />
     <Compile Include="chemicalFormula\parser\clsChemicalFormula1.vb" />
     <Compile Include="chemicalFormula\parser\clsChemicalFormula2.vb" />
@@ -93,7 +98,11 @@
     <Compile Include="chemicalFormula\parser\clsChemicalFormula4.vb" />
     <Compile Include="chemicalFormula\parser\clsChemicalFormula5.vb" />
     <Compile Include="chemicalFormula\clsChemicalFormula.vb" />
-    <Compile Include="fraction\clsEuclidAlgorithm.vb" />
+    <Compile Include="algorithm\clsEuclidGCD.vb" />
+    <Compile Include="formulaToken\char\clsCharEqual.vb" />
+    <Compile Include="formulaToken\char\clsCharPlus.vb" />
+    <Compile Include="formulaToken\token\clsTokenEqual.vb" />
+    <Compile Include="formulaToken\token\clsTokenPlus.vb" />
     <Compile Include="fraction\clsFraction.vb" />
     <Compile Include="general\INullable.vb" />
     <Compile Include="general\Observer.vb" />

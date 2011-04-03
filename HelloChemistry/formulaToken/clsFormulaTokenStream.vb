@@ -8,6 +8,7 @@ Namespace formulaToken
 
         Private _formula As String
         Private _length As Integer
+        Private _oldPosition As Integer
         Private _position As Integer
         Private _endFlag As Boolean
         Private _currentToken As IFormulaToken
@@ -15,9 +16,11 @@ Namespace formulaToken
         Public Sub lexer()
             Debug.Assert(Not isEnd())
             If (_position >= _length) Then
+                _oldPosition = _position
                 _endFlag = True
             Else
                 _currentToken = clsFormulaToken.token(_formula, _position)
+                _oldPosition = _position
                 _position += _currentToken.length
             End If
         End Sub
@@ -32,6 +35,18 @@ Namespace formulaToken
             End If
         End Sub
 
+        Public ReadOnly Property position As Integer
+            Get
+                Return _oldPosition
+            End Get
+        End Property
+
+        Public ReadOnly Property formula As String
+            Get
+                Return _formula
+            End Get
+        End Property
+
         Public ReadOnly Property nextTokenType As enumFormulaToken
             Get
                 Return _currentToken.tokenType
@@ -40,26 +55,22 @@ Namespace formulaToken
 
         Public ReadOnly Property number() As Integer
             Get
-                'Debug.Assert(_currentToken.tokenType = enumFormulaToken.tokenNumber)
-                Dim result As Integer = CType(_currentToken, clsTokenNumber).number
-                'lexer()
-                Return result
+                Return CType(_currentToken, clsTokenNumber).number
             End Get
         End Property
 
         Public ReadOnly Property element As String
             Get
-                'Debug.Assert(_currentToken.tokenType = enumFormulaToken.tokenElement)
-                Dim result As String = CType(_currentToken, clsTokenElement).elementSymbol
-                'lexer()
-                Return result
+                Return CType(_currentToken, clsTokenElement).elementSymbol
             End Get
         End Property
 
         Public Sub New(ByVal formula As String)
-            _formula = formula
+            ' Removing white space
+            _formula = Replace(formula, " ", "")
+
             _position = 0
-            _length = formula.Length
+            _length = _formula.Length
             lexer()
         End Sub
 
@@ -69,8 +80,10 @@ Namespace formulaToken
             Do
                 If (nextTokenType = enumFormulaToken.tokenElement) Then
                     Debug.Print("Element " + element)
+                    lexer()
                 ElseIf (nextTokenType = enumFormulaToken.tokenNumber) Then
                     Debug.Print("Number " + number.ToString)
+                    lexer()
                 ElseIf (nextTokenType = enumFormulaToken.tokenLeftBracket) Then
                     Debug.Print("Left Bracket")
                     lexer()

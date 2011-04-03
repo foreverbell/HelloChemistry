@@ -10,7 +10,9 @@ Namespace formulaToken.char
                 New clsCharNumber,
                 New clsCharLeftBracket,
                 New clsCharRightBracket,
-                New clsCharPeriod
+                New clsCharPeriod,
+                New clsCharPlus,
+                New clsCharEqual
             }
 
         Public Shared ReadOnly Property charType(ByVal ch As Char) As enumFormulaChar
@@ -20,7 +22,7 @@ Namespace formulaToken.char
                         Return formulaChar.charType
                     End If
                 Next
-                Throw New ArgumentException
+                Throw New ArgumentException("Bad char.")
             End Get
         End Property
     End Class

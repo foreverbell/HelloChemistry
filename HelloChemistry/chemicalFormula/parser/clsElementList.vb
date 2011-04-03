@@ -50,9 +50,9 @@ Namespace chemicalFormula.parser
             End Get
         End Property
 
-        Public ReadOnly Property elementTableCopy
+        Public ReadOnly Property elementTable As Hashtable
             Get
-                Return _elementTable.Clone
+                Return _elementTable
             End Get
         End Property
     End Class

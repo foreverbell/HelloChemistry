@@ -25,7 +25,7 @@ Namespace data
                         Return reader
                     End If
                 Next
-                Throw New ArgumentException
+                Throw New ArgumentException("Bad data type.")
             End Get
         End Property
 
