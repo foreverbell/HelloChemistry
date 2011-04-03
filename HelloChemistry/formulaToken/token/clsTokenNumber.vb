@@ -22,6 +22,7 @@ Namespace formulaToken.token
             If (clsFormulaChar.charType(formula(position)) <> enumFormulaChar.charNumber) Then
                 Return False
             End If
+            _number = 0
             While (clsFormulaChar.charType(formula(position)) = enumFormulaChar.charNumber)
                 _number *= 10
                 _number += Val(formula(position))

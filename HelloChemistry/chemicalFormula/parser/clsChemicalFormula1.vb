@@ -12,10 +12,13 @@ Namespace chemicalFormula.parser
                 formula.parseFormula(stream)
 
                 _element.merge(formula._element)
-
                 If (Not stream.isEnd()) Then
-                    stream.matchNextToken(enumFormulaToken.tokenPeriod)
-                    stream.lexer()
+                    If (stream.nextTokenType = enumFormulaToken.tokenPeriod) Then
+                        ' stream.matchNextToken(enumFormulaToken.tokenPeriod)
+                        stream.lexer()
+                    Else
+                        Exit Do
+                    End If
                 End If
             Loop Until (stream.isEnd())
         End Sub

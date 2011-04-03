@@ -1,4 +1,5 @@
-﻿Namespace temperature
+﻿
+Namespace temperature
     Public Class clsNullTemperature
         Inherits clsTemperature
 

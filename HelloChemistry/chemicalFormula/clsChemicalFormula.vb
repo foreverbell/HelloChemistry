@@ -14,7 +14,11 @@ Namespace chemicalFormula
         End Property
 
         Public Sub New(ByVal formula As String)
-            parser.parseFormula(New clsFormulaTokenStream(formula))
+            Dim stream As clsFormulaTokenStream = New clsFormulaTokenStream(formula)
+            parser.parseFormula(stream)
+            If (Not stream.isEnd()) Then
+                Throw New Exception("Bad chemical formula")
+            End If
         End Sub
     End Class
 End Namespace

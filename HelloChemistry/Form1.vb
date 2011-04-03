@@ -6,9 +6,9 @@ Imports HelloChemistry.temperature
 Public Class Form1
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Dim formula As New clsChemicalFormula("Fe2(SO4)3.5H2O")
+        Dim formula As New clsChemicalFormula("Fe2(SO4(5CuSO4.H2O)2)3.6H2O")
 
-        Debug.Print("Fe2(SO4)3.5H2O mass: " + formula.mass.ToString)
+        Debug.Print("Fe2(SO4(5CuSO4.H2O)2)3.6H2O mass: " + formula.mass.ToString)
 
 
         Dim element As clsElement = clsElementManager.instance.element("Cu")

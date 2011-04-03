@@ -6,16 +6,17 @@ Namespace chemicalFormula.parser
     Public Class clsChemicalFormula4
         Inherits clsChemicalFormula0
 
-        ' Parse formula5, (, )
+        ' Parse formula1/5, (, )
         Public Overrides Sub parseFormula(ByVal stream As clsFormulaTokenStream)
-            Dim formula As New clsChemicalFormula5
+            Dim formula As clsChemicalFormula0
 
             If (stream.nextTokenType = enumFormulaToken.tokenLeftBracket) Then
                 ' The first token might be '('
                 stream.matchNextToken(enumFormulaToken.tokenLeftBracket)
                 stream.lexer()
 
-                ' Processed by formula5
+                ' Processed by formula1
+                formula = New clsChemicalFormula1
                 formula.parseFormula(stream)
 
                 ' Test if the token is ')'
@@ -23,6 +24,7 @@ Namespace chemicalFormula.parser
                 stream.lexer()
             Else
                 ' Processed by formula5
+                formula = New clsChemicalFormula5
                 formula.parseFormula(stream)
             End If
 
