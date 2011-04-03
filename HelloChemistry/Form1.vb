@@ -2,6 +2,7 @@
 Imports HelloChemistry.chemicalFormula
 Imports HelloChemistry.element
 Imports HelloChemistry.temperature
+Imports HelloChemistry.fraction
 
 Public Class Form1
 
@@ -17,5 +18,11 @@ Public Class Form1
         Debug.Print(element.meltingPoint.temperatureExpression)
         element = clsElementManager.instance.element("Fe")
         Debug.Print(element.meltingPoint.temperatureExpression)
+
+
+        Dim f1 As New clsFraction(3, 5)
+        Dim f2 As New clsFraction(1, 2)
+        Dim f3 As clsFraction = (f1 - f2)
+
     End Sub
 End Class

@@ -93,6 +93,8 @@
     <Compile Include="chemicalFormula\parser\clsChemicalFormula4.vb" />
     <Compile Include="chemicalFormula\parser\clsChemicalFormula5.vb" />
     <Compile Include="chemicalFormula\clsChemicalFormula.vb" />
+    <Compile Include="fraction\clsEuclidAlgorithm.vb" />
+    <Compile Include="fraction\clsFraction.vb" />
     <Compile Include="general\INullable.vb" />
     <Compile Include="general\Observer.vb" />
     <Compile Include="general\Subject.vb" />
