@@ -1,5 +1,4 @@
 ﻿
-Imports HelloChemistry.formulaToken.char
 Imports HelloChemistry.formulaToken.token
 
 Namespace formulaToken
@@ -73,26 +72,5 @@ Namespace formulaToken
             _length = _formula.Length
             lexer()
         End Sub
-
-#If DEBUG Then
-        Public Sub parseFormula()
-            Debug.Print("parsing formula " + _formula)
-            Do
-                If (nextTokenType = enumFormulaToken.tokenElement) Then
-                    Debug.Print("Element " + element)
-                    lexer()
-                ElseIf (nextTokenType = enumFormulaToken.tokenNumber) Then
-                    Debug.Print("Number " + number.ToString)
-                    lexer()
-                ElseIf (nextTokenType = enumFormulaToken.tokenLeftBracket) Then
-                    Debug.Print("Left Bracket")
-                    lexer()
-                Else
-                    Debug.Print("Right Bracket")
-                    lexer()
-                End If
-            Loop Until (isEnd())
-        End Sub
-#End If
     End Class
 End Namespace

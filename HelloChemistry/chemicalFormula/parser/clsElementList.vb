@@ -13,7 +13,7 @@ Namespace chemicalFormula.parser
                 _elementTable.Item(element) += factor
             End If
 
-            Debug.Print("Element added, " & element & ", with factor " & factor.ToString)
+            ' Debug.Print("Element added, " & element & ", with factor " & factor.ToString)
         End Sub
 
         Public Sub merge(ByVal list As clsElementList)
@@ -35,7 +35,7 @@ Namespace chemicalFormula.parser
                 _elementTable.Item(key) *= factor
             Next
 
-            Debug.Print("All element multiply " & factor.ToString)
+            ' Debug.Print("All element multiply " & factor.ToString)
         End Sub
 
         Public ReadOnly Property mass As Double

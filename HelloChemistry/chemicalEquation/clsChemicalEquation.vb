@@ -12,7 +12,7 @@ Namespace chemicalEquation
         Dim _parser As New clsChemicalEquation1
         Dim _equation As String
 
-        Public Function balance(ByVal result() As Integer) As Boolean
+        Public Function balance() As Boolean
             Dim _elementTotal As New clsElementList
             Dim matrix(,) As clsFraction
             Dim pointer1 As Integer, pointer2 As Integer
@@ -58,7 +58,7 @@ Namespace chemicalEquation
                 Next
             Next
 
-            Dim solve(0) As clsFraction
+            Dim solve(0) As clsFraction, result(0) As Integer
 
             If (clsGaussJordanElimination.gaussJordanElimination(matrix, solve)) Then
                 result = clsFraction.simple(solve)

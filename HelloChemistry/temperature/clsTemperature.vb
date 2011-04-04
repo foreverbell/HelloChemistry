@@ -5,6 +5,8 @@ Namespace temperature
     Public Class clsTemperature
         Inherits Observer
         Implements INullable
+        Implements IDisposable
+
 
         Private _temperatureK As Double
         ' Optional temperature expression mode: Kelvins
@@ -64,10 +66,27 @@ Namespace temperature
             _temperatureK = temperatureK
         End Sub
 
-        Protected Overrides Sub Finalize()
-            MyBase.Finalize()
+#Region "IDisposable Support"
+        Private disposedValue As Boolean
 
-            clsTemperatureManager.instance.detach(Me)
+        ' IDisposable
+        Protected Overridable Sub Dispose(ByVal disposing As Boolean)
+            If Not Me.disposedValue Then
+                clsTemperatureManager.instance.detach(Me)
+            End If
+            Me.disposedValue = True
         End Sub
+
+        Protected Overrides Sub Finalize()
+            Dispose(False)
+            MyBase.Finalize()
+        End Sub
+
+        Public Sub Dispose() Implements IDisposable.Dispose
+            Dispose(True)
+            GC.SuppressFinalize(Me)
+        End Sub
+#End Region
+
     End Class
 End Namespace

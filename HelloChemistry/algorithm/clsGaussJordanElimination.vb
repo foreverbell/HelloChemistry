@@ -3,8 +3,10 @@ Imports HelloChemistry.fraction
 
 Namespace algorithm
 
+    '
     ' Reference: http://www.artofproblemsolving.com/blog/13009
     ' Original author: zkw
+    '
 
     Public Class clsGaussJordanElimination
 
