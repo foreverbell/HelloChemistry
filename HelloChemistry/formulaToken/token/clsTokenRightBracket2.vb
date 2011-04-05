@@ -2,7 +2,7 @@
 Imports HelloChemistry.formulaToken.char
 
 Namespace formulaToken.token
-    Public Class clsTokenLeftBracket
+    Public Class clsTokenRightBracket2
         Implements IFormulaToken
 
         Public ReadOnly Property length As Integer Implements IFormulaToken.length
@@ -12,11 +12,11 @@ Namespace formulaToken.token
         End Property
 
         Public Function match(ByVal formula As String, ByVal position As Integer) As Boolean Implements IFormulaToken.match
-            Return (clsFormulaChar.charType(formula(position)) = enumFormulaChar.charLeftBracket)
+            Return (clsFormulaChar.charType(formula(position)) = enumFormulaChar.charRightBracket2)
         End Function
 
         Public Function tokenType() As enumFormulaToken Implements IFormulaToken.tokenType
-            Return enumFormulaToken.tokenLeftBracket
+            Return enumFormulaToken.tokenRightBracket2
         End Function
     End Class
 End Namespace

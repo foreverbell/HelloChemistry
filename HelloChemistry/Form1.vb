@@ -11,6 +11,9 @@ Public Class Form1
 
         Debug.Print("Fe2(SO4(5CuSO4·H2O)2)3·6H2O mass: " + formula.mass.ToString)
 
+        formula = New clsChemicalFormula("AlO2{-}")
+        Debug.Print(formula.electron)
+
 
         Dim element As clsElement = clsElementManager.instance.element("Cu")
         Debug.Print(element.meltingPoint.temperatureExpression)
@@ -21,7 +24,7 @@ Public Class Form1
 
 
 
-        Dim ee As New clsChemicalEquation("CaCl2+H2O=Ca(OH)2+H2+Cl2")
+        Dim ee As New clsChemicalEquation("Cu+Fe{3+}=Fe{2+}+Cu{2+}")
         ee.balance()
 
     End Sub

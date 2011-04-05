@@ -14,6 +14,12 @@ Namespace chemicalFormula
             End Get
         End Property
 
+        Public ReadOnly Property electron As Integer
+            Get
+                Return _parser._electron
+            End Get
+        End Property
+
         Public ReadOnly Property chemicalFormula As String
             Get
                 Return _chemicalFormula

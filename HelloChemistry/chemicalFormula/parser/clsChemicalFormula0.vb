@@ -5,6 +5,7 @@ Namespace chemicalFormula.parser
 
     Public MustInherit Class clsChemicalFormula0
         Protected Friend _element As New clsElementList
+        Protected Friend _electron As Integer
         Protected Friend _expectedTokenList As New List(Of enumFormulaToken)
 
         Public ReadOnly Property element As clsElementList

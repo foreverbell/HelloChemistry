@@ -8,8 +8,11 @@ Namespace formulaToken.token
                 New clsTokenNumber,
                 New clsTokenLeftBracket,
                 New clsTokenRightBracket,
+                New clsTokenLeftBracket2,
+                New clsTokenRightBracket2,
                 New clsTokenPeriod,
                 New clsTokenPlus,
+                New clsTokenMinus,
                 New clsTokenEqual
             }
 

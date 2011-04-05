@@ -10,8 +10,11 @@ Namespace formulaToken.char
                 New clsCharNumber,
                 New clsCharLeftBracket,
                 New clsCharRightBracket,
+                New clsCharLeftBracket2,
+                New clsCharRightBracket2,
                 New clsCharPeriod,
                 New clsCharPlus,
+                New clsCharMinus,
                 New clsCharEqual
             }
 

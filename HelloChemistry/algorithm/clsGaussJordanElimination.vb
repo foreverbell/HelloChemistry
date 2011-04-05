@@ -52,6 +52,9 @@ Namespace algorithm
             Next
 
             For i As Integer = 1 To m - 1
+                If (solvePoint(i) = 0) Then
+                    Return False
+                End If
                 solve(i) = inMatrix(solvePoint(i), m)
             Next
 

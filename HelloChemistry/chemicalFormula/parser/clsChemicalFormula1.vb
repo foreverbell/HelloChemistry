@@ -17,6 +17,16 @@ Namespace chemicalFormula.parser
                         ' stream.matchNextToken(enumFormulaToken.tokenPeriod)
                         stream.lexer()
                     Else
+                        If (stream.nextTokenType = enumFormulaToken.tokenLeftBracket2) Then
+                            stream.lexer()
+
+                            Dim formulaElectron As New clsChemicalFormulaElectron
+                            formulaElectron.parseFormula(stream)
+                            _electron = formulaElectron._electron
+
+                            stream.matchNextToken(enumFormulaToken.tokenRightBracket2)
+                            stream.lexer()
+                        End If
                         Exit Do
                     End If
                 End If

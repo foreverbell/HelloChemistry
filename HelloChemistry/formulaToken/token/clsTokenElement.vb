@@ -13,9 +13,11 @@ Namespace formulaToken.token
             End Get
         End Property
 
-        Public Function length() As Integer Implements IFormulaToken.length
-            Return _elementSymbol.Length
-        End Function
+        Public ReadOnly Property length As Integer Implements IFormulaToken.length
+            Get
+                Return _elementSymbol.Length
+            End Get
+        End Property
 
         Public Function match(ByVal formula As String, ByVal position As Integer) As Boolean Implements IFormulaToken.match
             If (clsFormulaChar.charType(formula(position)) <> enumFormulaChar.charUpperCase) Then

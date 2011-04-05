@@ -7,8 +7,11 @@ Namespace formulaToken.char
         charNumber
         charLeftBracket
         charRightBracket
+        charLeftBracket2
+        charRightBracket2
         charPeriod
         charPlus
+        charMinus
         charEqual
     End Enum
 End Namespace

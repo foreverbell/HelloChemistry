@@ -18,9 +18,10 @@ Namespace data
             _lineData = Split(streamToRead.ReadToEnd, vbCrLf)
             _numOfLines = _lineData.GetLength(0)
 
-            mStream.Dispose()
-            packStream.Dispose()
-            streamToRead.Dispose()
+            ' Let GC do it ! 
+            ' streamToRead.Dispose()
+            ' packStream.Dispose()
+            ' mStream.Dispose()
         End Sub
 
         Public ReadOnly Property dataType As Integer

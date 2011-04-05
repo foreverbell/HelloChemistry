@@ -17,6 +17,7 @@ Namespace chemicalEquation
             Dim matrix(,) As clsFraction
             Dim pointer1 As Integer, pointer2 As Integer
 
+            ' Count element
             For Each f As clsChemicalFormula In _parser.leftList
                 _elementTotal.merge(f.element)
             Next
@@ -25,8 +26,9 @@ Namespace chemicalEquation
                 _elementTotal.merge(f.element)
             Next
 
-            ReDim matrix(_elementTotal.elementTable.Count + 1, _parser.leftList.Count + _parser.rightList.Count + 1)
+            ReDim matrix(_elementTotal.elementTable.Count + 2, _parser.leftList.Count + _parser.rightList.Count + 1)
 
+            ' Create matrix for all chemical formulas
             For Each ele As String In _elementTotal.elementTable.Keys
 
                 pointer1 += 1
@@ -47,9 +49,25 @@ Namespace chemicalEquation
                 Next
             Next
 
+            ' Create matrix for electron
+            pointer1 += 1
+            pointer2 = 0
+
+            For Each f As clsChemicalFormula In _parser.leftList
+                pointer2 += 1
+                matrix(pointer1, pointer2) = New clsFraction(f.electron)
+            Next
+
+            For Each f As clsChemicalFormula In _parser.rightList
+                pointer2 += 1
+                matrix(pointer1, pointer2) = New clsFraction(-f.electron)
+            Next
+
+            ' We assume that the factor of the first chemical formula is 1
             matrix(pointer1 + 1, 1) = New clsFraction(1)
             matrix(pointer1 + 1, pointer2 + 1) = New clsFraction(1)
 
+            ' Fill empty fractions as 0
             For i As Integer = 1 To pointer1 + 1
                 For j As Integer = 1 To pointer2 + 1
                     If (matrix(i, j) Is Nothing) Then
@@ -58,21 +76,23 @@ Namespace chemicalEquation
                 Next
             Next
 
+            ' Solve the equations
             Dim solve(0) As clsFraction, result(0) As Integer
 
             If (clsGaussJordanElimination.gaussJordanElimination(matrix, solve)) Then
                 result = clsFraction.simple(solve)
 
+                ' Reform the expression
                 _equation = ""
                 pointer1 = 0
                 For Each f As clsChemicalFormula In _parser.leftList
                     pointer1 += 1
-                    _equation &= result(pointer1).ToString & f.chemicalFormula & " + "
+                    _equation &= IIf(result(pointer1) = 1, "", result(pointer1).ToString) & f.chemicalFormula & " + "
                 Next
                 _equation = Left(_equation, _equation.Length - 3) & " = "
                 For Each f As clsChemicalFormula In _parser.rightList
                     pointer1 += 1
-                    _equation &= result(pointer1).ToString & f.chemicalFormula & " + "
+                    _equation &= IIf(result(pointer1) = 1, "", result(pointer1).ToString) & f.chemicalFormula & " + "
                 Next
                 _equation = Left(_equation, _equation.Length - 3)
 
