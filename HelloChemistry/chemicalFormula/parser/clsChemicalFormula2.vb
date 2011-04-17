@@ -12,7 +12,7 @@ Namespace chemicalFormula.parser
 
             If (stream.nextTokenType = enumFormulaToken.tokenNumber) Then
                 factor = stream.number
-                stream.lexer()
+                stream.lex()
             End If
 
             Dim formula As New clsChemicalFormula3

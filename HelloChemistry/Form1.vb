@@ -23,8 +23,7 @@ Public Class Form1
         Debug.Print(element.meltingPoint.temperatureExpression)
 
 
-
-        Dim ee As New clsChemicalEquation("Cu+Fe{3+}=Fe{2+}+Cu{2+}")
+        Dim ee As New clsChemicalEquation("Fe=Fe{2+}+e{-}")
         ee.balance()
 
     End Sub

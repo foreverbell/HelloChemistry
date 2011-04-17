@@ -13,7 +13,7 @@ Namespace chemicalFormula.parser
             If (stream.nextTokenType = enumFormulaToken.tokenLeftBracket) Then
                 ' The first token might be '('
                 stream.matchNextToken(enumFormulaToken.tokenLeftBracket)
-                stream.lexer()
+                stream.lex()
 
                 ' Processed by formula1
                 formula = New clsChemicalFormula1
@@ -21,7 +21,7 @@ Namespace chemicalFormula.parser
 
                 ' Test if the token is ')'
                 stream.matchNextToken(enumFormulaToken.tokenRightBracket)
-                stream.lexer()
+                stream.lex()
             Else
                 ' Processed by formula5
                 formula = New clsChemicalFormula5
@@ -34,7 +34,7 @@ Namespace chemicalFormula.parser
             If (Not stream.isEnd()) Then
                 If (stream.nextTokenType = enumFormulaToken.tokenNumber) Then
                     factor = stream.number
-                    stream.lexer()
+                    stream.lex()
                 End If
             End If
 

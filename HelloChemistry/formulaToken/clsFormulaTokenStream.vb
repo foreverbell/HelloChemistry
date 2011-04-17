@@ -12,7 +12,7 @@ Namespace formulaToken
         Private _endFlag As Boolean
         Private _currentToken As IFormulaToken
 
-        Public Sub lexer()
+        Public Sub lex()
             Debug.Assert(Not isEnd())
             If (_position >= _length) Then
                 _oldPosition = _position
@@ -70,7 +70,7 @@ Namespace formulaToken
 
             _position = 0
             _length = _formula.Length
-            lexer()
+            lex()
         End Sub
     End Class
 End Namespace

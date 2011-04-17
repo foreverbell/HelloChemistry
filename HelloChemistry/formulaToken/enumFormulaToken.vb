@@ -11,5 +11,6 @@ Namespace formulaToken
         tokenPlus
         tokenMinus
         tokenEqual
+        tokenElectron
     End Enum
 End Namespace

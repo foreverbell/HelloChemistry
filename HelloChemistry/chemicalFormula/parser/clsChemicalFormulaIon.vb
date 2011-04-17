@@ -2,7 +2,7 @@
 Imports HelloChemistry.formulaToken
 
 Namespace chemicalFormula.parser
-    Public Class clsChemicalFormulaElectron
+    Public Class clsChemicalFormulaIon
         Inherits clsChemicalFormula0
 
         Public Overrides Sub initializeExpectedTokenList()
@@ -16,7 +16,7 @@ Namespace chemicalFormula.parser
         Public Overrides Sub parseFormula(ByVal stream As clsFormulaTokenStream)
             If (stream.nextTokenType = enumFormulaToken.tokenNumber) Then
                 _electron = stream.number
-                stream.lexer()
+                stream.lex()
             Else
                 _electron = 1
             End If
@@ -26,7 +26,7 @@ Namespace chemicalFormula.parser
             If (stream.nextTokenType = enumFormulaToken.tokenMinus) Then
                 _electron = -_electron
             End If
-            stream.lexer()
+            stream.lex()
         End Sub
     End Class
 End Namespace

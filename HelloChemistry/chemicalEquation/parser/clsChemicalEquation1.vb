@@ -26,7 +26,7 @@ Namespace chemicalEquation.parser
             equation.parseFormula(stream, _leftList)
 
             stream.matchNextToken(enumFormulaToken.tokenEqual)
-            stream.lexer()
+            stream.lex()
 
             equation.parseFormula(stream, _rightList)
         End Sub

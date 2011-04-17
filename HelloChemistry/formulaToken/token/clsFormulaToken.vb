@@ -13,7 +13,8 @@ Namespace formulaToken.token
                 New clsTokenPeriod,
                 New clsTokenPlus,
                 New clsTokenMinus,
-                New clsTokenEqual
+                New clsTokenEqual,
+                New clsTokenElectron
             }
 
         Public Shared ReadOnly Property token(ByVal formula As String, ByVal position As Integer) As IFormulaToken

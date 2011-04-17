@@ -99,12 +99,13 @@
     <Compile Include="chemicalFormula\parser\clsChemicalFormula5.vb" />
     <Compile Include="chemicalFormula\clsChemicalFormula.vb" />
     <Compile Include="algorithm\clsEuclidGCD.vb" />
-    <Compile Include="chemicalFormula\parser\clsChemicalFormulaElectron.vb" />
+    <Compile Include="chemicalFormula\parser\clsChemicalFormulaIon.vb" />
     <Compile Include="formulaToken\char\clsCharEqual.vb" />
     <Compile Include="formulaToken\char\clsCharLeftBracket2.vb" />
     <Compile Include="formulaToken\char\clsCharMinus.vb" />
     <Compile Include="formulaToken\char\clsCharPlus.vb" />
     <Compile Include="formulaToken\char\clsCharRightBracket2.vb" />
+    <Compile Include="formulaToken\token\clsTokenElectron.vb" />
     <Compile Include="formulaToken\token\clsTokenRightBracket2.vb" />
     <Compile Include="formulaToken\token\clsTokenEqual.vb" />
     <Compile Include="formulaToken\token\clsTokenLeftBracket2.vb" />

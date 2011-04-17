@@ -12,7 +12,7 @@ Namespace chemicalEquation.parser
 
                 If (Not stream.isEnd()) Then
                     If (stream.nextTokenType = enumFormulaToken.tokenPlus) Then
-                        stream.lexer()
+                        stream.lex()
                     Else
                         Exit Do
                     End If
