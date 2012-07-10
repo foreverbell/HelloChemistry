@@ -1,7 +1,7 @@
 ﻿
 Imports HelloChemistry.formulaToken
 
-Namespace chemicalFormula.parser
+Namespace chemicalFormula.parser.internal
 
     Public Class clsChemicalFormula4
         Inherits clsChemicalFormula0

@@ -1,22 +1,24 @@
 ﻿
-Imports HelloChemistry.formulaToken
 Imports HelloChemistry.chemicalFormula.parser
 
 Namespace chemicalFormula
+
     Public Class clsChemicalFormula
 
-        Dim _parser As New clsChemicalFormula1
-        Dim _chemicalFormula As String
+        Private _chemicalFormula As String
+        Private _mass As Double
+        Private _electron As Integer
+        Private _element As clsElementList
 
         Public ReadOnly Property mass As Double
             Get
-                Return _parser.element.mass
+                Return _mass
             End Get
         End Property
 
         Public ReadOnly Property electron As Integer
             Get
-                Return _parser._electron
+                Return _electron
             End Get
         End Property
 
@@ -28,24 +30,18 @@ Namespace chemicalFormula
 
         Public ReadOnly Property element As clsElementList
             Get
-                Return _parser.element
+                Return _element
             End Get
         End Property
 
-        Private Sub parse(ByVal stream As clsFormulaTokenStream)
-            Dim startPos As Integer = stream.position
-
-            _parser.parseFormula(stream)
-
-            _chemicalFormula = Mid(stream.formula, startPos + 1, stream.position - startPos)
-        End Sub
-
-        Public Sub New(ByVal formula As String)
-            parse(New clsFormulaTokenStream(formula))
-        End Sub
-
-        Public Sub New(ByVal formula As clsFormulaTokenStream)
-            parse(formula)
+        Public Sub New(ByVal mass As Double,
+                       ByVal electron As Integer,
+                       ByVal chemicalFormula As String,
+                       ByVal element As clsElementList)
+            _mass = mass
+            _electron = electron
+            _chemicalFormula = chemicalFormula
+            _element = element
         End Sub
     End Class
 End Namespace

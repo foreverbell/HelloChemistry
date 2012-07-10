@@ -1,7 +1,7 @@
 ﻿
 Imports HelloChemistry.formulaToken
 
-Namespace chemicalFormula.parser
+Namespace chemicalFormula.parser.internal
 
     Public MustInherit Class clsChemicalFormula0
         Protected Friend _element As New clsElementList
