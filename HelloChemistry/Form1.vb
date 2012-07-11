@@ -33,5 +33,10 @@ Public Class Form1
         ee = clsChemicalEquationParser.instance.parse("FeS2+O2=Fe2O3+SO2")
         ee = ee.balance()
         Debug.Print(ee.strChemicalEquation)
+
+        ee = clsChemicalEquationParser.instance.parse("Cu+HNO3=Cu(NO3)2+NO+H2O")
+        ee = ee.balance()
+        ee = ee.balance
+        Debug.Print(ee.strChemicalEquation)
     End Sub
 End Class

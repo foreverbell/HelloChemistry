@@ -6,14 +6,13 @@ Namespace chemicalFormula
     Public Class clsChemicalFormula
 
         Private _strChemicalFormula As String
-        Private _mass As Double
         Private _electron As Integer
         Private _element As clsElementList
         Private _factor As Integer
 
         Public ReadOnly Property mass As Double
             Get
-                Return _mass
+                Return _element.mass
             End Get
         End Property
 
@@ -25,7 +24,7 @@ Namespace chemicalFormula
 
         Public ReadOnly Property strChemicalFormula As String
             Get
-                Return _strChemicalFormula
+                Return _factor.ToString & _strChemicalFormula
             End Get
         End Property
 
@@ -40,15 +39,17 @@ Namespace chemicalFormula
                 Return _factor
             End Get
             Set(value As Integer)
+                _element.divide(_factor)
+                _electron /= factor
                 _factor = value
+                _element.multiply(_factor)
+                _electron *= factor
             End Set
         End Property
 
-        Public Sub New(ByVal mass As Double,
-                       ByVal electron As Integer,
+        Public Sub New(ByVal electron As Integer,
                        ByVal strChemicalFormula As String,
                        ByVal element As clsElementList)
-            _mass = mass
             _electron = electron
             _strChemicalFormula = strChemicalFormula
             _element = element

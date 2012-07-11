@@ -15,92 +15,98 @@ Namespace chemicalEquation.parser
             End Get
         End Property
 
-        Public Function balance(ByVal equation As clsChemicalEquation) As clsChemicalEquation
-            Dim elementTotal As New clsElementList
-            Dim matrix(,) As clsFraction
-            Dim pointer1 As Integer, pointer2 As Integer
+        Private _elementTotal As clsElementList
+        Private _equation As clsChemicalEquation
+        Private _matrix(,) As clsFraction
+        Private _lineCount As Integer
+        Private _rowCount As Integer
 
-            ' Count element
-            For Each f As clsChemicalFormula In equation.leftList
-                elementTotal.merge(f.element)
+        Private Sub mergeElement()
+            _elementTotal = New clsElementList
+            For Each f As clsChemicalFormula In _equation.leftList
+                _elementTotal.merge(f.element)
             Next
-
-            For Each f As clsChemicalFormula In equation.rightList
-                elementTotal.merge(f.element)
+            For Each f As clsChemicalFormula In _equation.rightList
+                _elementTotal.merge(f.element)
             Next
+        End Sub
 
-            ReDim matrix(elementTotal.elementTable.Count + 2, equation.leftList.Count + equation.rightList.Count + 1)
+        Private Sub createChemicalMatrix()
+            ReDim _matrix(_elementTotal.elementTable.Count + 2, _equation.leftList.Count + _equation.rightList.Count + 1)
 
-            ' Create matrix for all chemical formulas
-            For Each ele As String In elementTotal.elementTable.Keys
+            _lineCount = 0
+            _rowCount = 0
 
-                pointer1 += 1
-                pointer2 = 0
-
-                For Each f As clsChemicalFormula In equation.leftList
-                    pointer2 += 1
+            For Each ele As String In _elementTotal.elementTable.Keys
+                _lineCount += 1
+                _rowCount = 0
+                For Each f As clsChemicalFormula In _equation.leftList
+                    _rowCount += 1
                     If (f.element.elementTable.Contains(ele)) Then
-                        matrix(pointer1, pointer2) = New clsFraction(f.element.elementTable.Item(ele))
+                        _matrix(_lineCount, _rowCount) = New clsFraction(f.element.elementTable.Item(ele))
                     End If
                 Next
-
-                For Each f As clsChemicalFormula In equation.rightList
-                    pointer2 += 1
+                For Each f As clsChemicalFormula In _equation.rightList
+                    _rowCount += 1
                     If (f.element.elementTable.Contains(ele)) Then
-                        matrix(pointer1, pointer2) = New clsFraction(-f.element.elementTable.Item(ele))
+                        _matrix(_lineCount, _rowCount) = New clsFraction(-f.element.elementTable.Item(ele))
                     End If
                 Next
             Next
+        End Sub
 
-            ' Create matrix for electron
-            pointer1 += 1
-            pointer2 = 0
+        Private Sub createElectronMatrix()
+            _lineCount += 1
+            _rowCount = 0
 
-            For Each f As clsChemicalFormula In equation.leftList
-                pointer2 += 1
-                matrix(pointer1, pointer2) = New clsFraction(f.electron)
+            For Each f As clsChemicalFormula In _equation.leftList
+                _rowCount += 1
+                _matrix(_lineCount, _rowCount) = New clsFraction(f.electron)
             Next
 
-            For Each f As clsChemicalFormula In equation.rightList
-                pointer2 += 1
-                matrix(pointer1, pointer2) = New clsFraction(-f.electron)
+            For Each f As clsChemicalFormula In _equation.rightList
+                _rowCount += 1
+                _matrix(_lineCount, _rowCount) = New clsFraction(-f.electron)
             Next
+        End Sub
 
+        Private Sub completeMatrix()
             ' We assume that the factor of the first chemical formula is 1
-            matrix(pointer1 + 1, 1) = New clsFraction(1)
-            matrix(pointer1 + 1, pointer2 + 1) = New clsFraction(1)
+            _matrix(_lineCount + 1, 1) = New clsFraction(1)
+            _matrix(_lineCount + 1, _rowCount + 1) = New clsFraction(1)
 
             ' Fill empty fractions as 0
-            For i As Integer = 1 To pointer1 + 1
-                For j As Integer = 1 To pointer2 + 1
-                    If (matrix(i, j) Is Nothing) Then
-                        matrix(i, j) = New clsFraction
+            For i As Integer = 1 To _lineCount + 1
+                For j As Integer = 1 To _rowCount + 1
+                    If (_matrix(i, j) Is Nothing) Then
+                        _matrix(i, j) = New clsFraction
                     End If
                 Next
             Next
+        End Sub
 
+        Private Function solveEquationAndReturn()
             ' Solve the equations
             Dim solve(0) As clsFraction, result(0) As Integer
             Dim retStr As String = vbNullString
             Dim retEquationLeftList As New List(Of clsChemicalFormula)
             Dim retEquationRightList As New List(Of clsChemicalFormula)
-
-            If (clsGaussJordanElimination.gaussJordanElimination(matrix, solve)) Then
+            Dim pointer As Integer
+            If (clsGaussJordanElimination.gaussJordanElimination(_matrix, solve)) Then
                 result = clsFraction.simple(solve)
-
                 ' Reform the expression
-                pointer1 = 0
-                For Each f As clsChemicalFormula In equation.leftList
-                    pointer1 += 1
-                    retStr &= IIf(result(pointer1) = 1, "", result(pointer1).ToString) & f.strChemicalFormula & " + "
-                    f.factor = result(pointer1)
+                pointer = 0
+                For Each f As clsChemicalFormula In _equation.leftList
+                    pointer += 1
+                    retStr &= IIf(result(pointer) = 1, "", result(pointer).ToString) & f.strChemicalFormula & " + "
+                    f.factor = result(pointer)
                     retEquationLeftList.Add(f)
                 Next
                 retStr = Left(retStr, retStr.Length - 3) & " = "
-                For Each f As clsChemicalFormula In equation.rightList
-                    pointer1 += 1
-                    retStr &= IIf(result(pointer1) = 1, "", result(pointer1).ToString) & f.strChemicalFormula & " + "
-                    f.factor = result(pointer1)
+                For Each f As clsChemicalFormula In _equation.rightList
+                    pointer += 1
+                    retStr &= IIf(result(pointer) = 1, "", result(pointer).ToString) & f.strChemicalFormula & " + "
+                    f.factor = result(pointer)
                     retEquationRightList.Add(f)
                 Next
                 retStr = Left(retStr, retStr.Length - 3)
@@ -111,9 +117,17 @@ Namespace chemicalEquation.parser
                                                retStr,
                                                True)
             Else
-                Throw New Exception("Information not enough, balance equation " + equation.strChemicalEquation + "failed.")
+                Throw New Exception("Information not enough, balance equation " + _equation.strChemicalEquation + "failed.")
             End If
+        End Function
 
+        Public Function balance(ByVal equation As clsChemicalEquation) As clsChemicalEquation
+            _equation = equation
+            mergeElement()
+            createChemicalMatrix()
+            createElectronMatrix()
+            completeMatrix()
+            Return solveEquationAndReturn()
         End Function
 
         Private Sub New()

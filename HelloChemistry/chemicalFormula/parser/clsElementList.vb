@@ -38,6 +38,19 @@ Namespace chemicalFormula.parser
             Debug.Print("All element multiply " & factor.ToString)
         End Sub
 
+        Public Sub divide(ByVal factor As Integer)
+            Dim keys As ICollection = _elementTable.Clone().Keys
+
+            For Each key As String In keys
+                If (_elementTable.Item(key) Mod factor <> 0) Then
+                    Throw New Exception("Invalid divide factor.")
+                Else
+                    _elementTable.Item(key) /= factor
+                End If
+            Next
+
+            Debug.Print("All element divide " & factor.ToString)
+        End Sub
         Public ReadOnly Property mass As Double
             Get
                 Dim keys As ICollection = _elementTable.Keys
