@@ -2,7 +2,7 @@
 Imports HelloChemistry.chemicalFormula
 Imports HelloChemistry.formulaToken
 
-Namespace chemicalEquation.parser
+Namespace chemicalEquation.parser.internal
     Public Class clsChemicalEquation1
 
         Private _leftList As New List(Of clsChemicalFormula)
@@ -20,15 +20,15 @@ Namespace chemicalEquation.parser
             End Get
         End Property
 
-        Public Sub parseFormula(ByVal stream As clsFormulaTokenStream)
+        Public Sub parseEquation(ByVal stream As clsFormulaTokenStream)
             Dim equation As New clsChemicalEquation2
 
-            equation.parseFormula(stream, _leftList)
+            equation.parseEquation(stream, _leftList)
 
             stream.matchNextToken(enumFormulaToken.tokenEqual)
             stream.lex()
 
-            equation.parseFormula(stream, _rightList)
+            equation.parseEquation(stream, _rightList)
         End Sub
     End Class
 End Namespace

@@ -88,9 +88,11 @@
   <ItemGroup>
     <Compile Include="algorithm\clsGaussJordanElimination.vb" />
     <Compile Include="chemicalEquation\clsChemicalEquation.vb" />
-    <Compile Include="chemicalEquation\parser\clsChemicalEquation1.vb" />
-    <Compile Include="chemicalEquation\parser\clsChemicalEquation2.vb" />
-    <Compile Include="chemicalEquation\parser\clsChemicalEquation3.vb" />
+    <Compile Include="chemicalEquation\parser\clsChemicalEquationBalancer.vb" />
+    <Compile Include="chemicalEquation\parser\clsChemicalEquationParser.vb" />
+    <Compile Include="chemicalEquation\parser\internal\clsChemicalEquation1.vb" />
+    <Compile Include="chemicalEquation\parser\internal\clsChemicalEquation2.vb" />
+    <Compile Include="chemicalEquation\parser\internal\clsChemicalEquation3.vb" />
     <Compile Include="chemicalFormula\clsChemicalFormula.vb" />
     <Compile Include="chemicalFormula\parser\internal\clsChemicalFormula0.vb" />
     <Compile Include="chemicalFormula\parser\internal\clsChemicalFormula1.vb" />

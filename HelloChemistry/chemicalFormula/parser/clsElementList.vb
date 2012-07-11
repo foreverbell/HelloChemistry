@@ -13,7 +13,7 @@ Namespace chemicalFormula.parser
                 _elementTable.Item(element) += factor
             End If
 
-            ' Debug.Print("Element added, " & element & ", with factor " & factor.ToString)
+            Debug.Print("Element added, " & element & ", with factor " & factor.ToString)
         End Sub
 
         Public Sub merge(ByVal list As clsElementList)
@@ -28,14 +28,14 @@ Namespace chemicalFormula.parser
             Next
         End Sub
 
-        Public Sub mult(ByVal factor As Integer)
+        Public Sub multiply(ByVal factor As Integer)
             Dim keys As ICollection = _elementTable.Clone().Keys
 
             For Each key As String In keys
                 _elementTable.Item(key) *= factor
             Next
 
-            ' Debug.Print("All element multiply " & factor.ToString)
+            Debug.Print("All element multiply " & factor.ToString)
         End Sub
 
         Public ReadOnly Property mass As Double

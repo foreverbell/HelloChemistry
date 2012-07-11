@@ -5,10 +5,11 @@ Namespace chemicalFormula
 
     Public Class clsChemicalFormula
 
-        Private _chemicalFormula As String
+        Private _strChemicalFormula As String
         Private _mass As Double
         Private _electron As Integer
         Private _element As clsElementList
+        Private _factor As Integer
 
         Public ReadOnly Property mass As Double
             Get
@@ -22,9 +23,9 @@ Namespace chemicalFormula
             End Get
         End Property
 
-        Public ReadOnly Property chemicalFormula As String
+        Public ReadOnly Property strChemicalFormula As String
             Get
-                Return _chemicalFormula
+                Return _strChemicalFormula
             End Get
         End Property
 
@@ -34,14 +35,24 @@ Namespace chemicalFormula
             End Get
         End Property
 
+        Public Property factor As Integer
+            Get
+                Return _factor
+            End Get
+            Set(value As Integer)
+                _factor = value
+            End Set
+        End Property
+
         Public Sub New(ByVal mass As Double,
                        ByVal electron As Integer,
-                       ByVal chemicalFormula As String,
+                       ByVal strChemicalFormula As String,
                        ByVal element As clsElementList)
             _mass = mass
             _electron = electron
-            _chemicalFormula = chemicalFormula
+            _strChemicalFormula = strChemicalFormula
             _element = element
+            _factor = 1
         End Sub
     End Class
 End Namespace

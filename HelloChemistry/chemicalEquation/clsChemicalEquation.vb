@@ -1,116 +1,49 @@
 ﻿
-Imports HelloChemistry.fraction
 Imports HelloChemistry.chemicalFormula
-Imports HelloChemistry.formulaToken
 Imports HelloChemistry.chemicalEquation.parser
-Imports HelloChemistry.chemicalFormula.parser
-Imports HelloChemistry.algorithm
 
 Namespace chemicalEquation
     Public Class clsChemicalEquation
 
-        Dim _parser As New clsChemicalEquation1
-        Dim _equation As String
+        Private _leftList As New List(Of clsChemicalFormula)
+        Private _rightList As New List(Of clsChemicalFormula)
+        Private _strChemicalEquation As String
+        Private _balanced As Boolean
 
-        Public Function balance() As Boolean
-            Dim _elementTotal As New clsElementList
-            Dim matrix(,) As clsFraction
-            Dim pointer1 As Integer, pointer2 As Integer
+        Public ReadOnly Property leftList As List(Of clsChemicalFormula)
+            Get
+                Return _leftList
+            End Get
+        End Property
 
-            ' Count element
-            For Each f As clsChemicalFormula In _parser.leftList
-                _elementTotal.merge(f.element)
-            Next
+        Public ReadOnly Property rightList As List(Of clsChemicalFormula)
+            Get
+                Return _rightList
+            End Get
+        End Property
 
-            For Each f As clsChemicalFormula In _parser.rightList
-                _elementTotal.merge(f.element)
-            Next
+        Public ReadOnly Property strChemicalEquation As String
+            Get
+                Return _strChemicalEquation
+            End Get
+        End Property
 
-            ReDim matrix(_elementTotal.elementTable.Count + 2, _parser.leftList.Count + _parser.rightList.Count + 1)
-
-            ' Create matrix for all chemical formulas
-            For Each ele As String In _elementTotal.elementTable.Keys
-
-                pointer1 += 1
-                pointer2 = 0
-
-                For Each f As clsChemicalFormula In _parser.leftList
-                    pointer2 += 1
-                    If (f.element.elementTable.Contains(ele)) Then
-                        matrix(pointer1, pointer2) = New clsFraction(f.element.elementTable.Item(ele))
-                    End If
-                Next
-
-                For Each f As clsChemicalFormula In _parser.rightList
-                    pointer2 += 1
-                    If (f.element.elementTable.Contains(ele)) Then
-                        matrix(pointer1, pointer2) = New clsFraction(-f.element.elementTable.Item(ele))
-                    End If
-                Next
-            Next
-
-            ' Create matrix for electron
-            pointer1 += 1
-            pointer2 = 0
-
-            For Each f As clsChemicalFormula In _parser.leftList
-                pointer2 += 1
-                matrix(pointer1, pointer2) = New clsFraction(f.electron)
-            Next
-
-            For Each f As clsChemicalFormula In _parser.rightList
-                pointer2 += 1
-                matrix(pointer1, pointer2) = New clsFraction(-f.electron)
-            Next
-
-            ' We assume that the factor of the first chemical formula is 1
-            matrix(pointer1 + 1, 1) = New clsFraction(1)
-            matrix(pointer1 + 1, pointer2 + 1) = New clsFraction(1)
-
-            ' Fill empty fractions as 0
-            For i As Integer = 1 To pointer1 + 1
-                For j As Integer = 1 To pointer2 + 1
-                    If (matrix(i, j) Is Nothing) Then
-                        matrix(i, j) = New clsFraction
-                    End If
-                Next
-            Next
-
-            ' Solve the equations
-            Dim solve(0) As clsFraction, result(0) As Integer
-
-            If (clsGaussJordanElimination.gaussJordanElimination(matrix, solve)) Then
-                result = clsFraction.simple(solve)
-
-                ' Reform the expression
-                _equation = ""
-                pointer1 = 0
-                For Each f As clsChemicalFormula In _parser.leftList
-                    pointer1 += 1
-                    _equation &= IIf(result(pointer1) = 1, "", result(pointer1).ToString) & f.chemicalFormula & " + "
-                Next
-                _equation = Left(_equation, _equation.Length - 3) & " = "
-                For Each f As clsChemicalFormula In _parser.rightList
-                    pointer1 += 1
-                    _equation &= IIf(result(pointer1) = 1, "", result(pointer1).ToString) & f.chemicalFormula & " + "
-                Next
-                _equation = Left(_equation, _equation.Length - 3)
-
-                Debug.Print("Balanced equation: " & _equation)
-
-                Return True
+        Public Function balance() As clsChemicalEquation
+            If (_balanced) Then
+                Throw New Exception("Equation already balanced.")
             Else
-                Return False
+                Return clsChemicalEquationBalancer.instance.balance(Me)
             End If
-
         End Function
 
-        Public Sub New(ByVal equation As String)
-            Dim stream As clsFormulaTokenStream = New clsFormulaTokenStream(equation)
-
-            Debug.Print("Equation: " & equation)
-            _parser.parseFormula(stream)
+        Public Sub New(ByVal leftList As List(Of clsChemicalFormula),
+                       ByVal rightList As List(Of clsChemicalFormula),
+                       ByVal strChemicalEqualtion As String,
+                       ByVal balanced As Boolean)
+            _leftList = leftList
+            _rightList = rightList
+            _strChemicalEquation = strChemicalEqualtion
+            _balanced = balanced
         End Sub
-
     End Class
 End Namespace

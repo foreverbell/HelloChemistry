@@ -20,13 +20,16 @@ Namespace chemicalFormula.parser
 
             _parser.parseFormula(stream)
 
-            Dim chemicalFormula As String = Mid(stream.formula, startPos + 1, stream.position - startPos)
+            Dim strChemicalFormula As String = Mid(stream.formula, startPos + 1, stream.position - startPos)
 
-            Return New clsChemicalFormula(_parser._element.mass, _parser._electron, chemicalFormula, _parser._element)
+            Return New clsChemicalFormula(_parser._element.mass, _parser._electron, strChemicalFormula, _parser._element)
         End Function
 
         Public Function parse(ByVal formula As String) As clsChemicalFormula
             Return parse(New clsFormulaTokenStream(formula))
         End Function
+
+        Private Sub New()
+        End Sub
     End Class
 End Namespace

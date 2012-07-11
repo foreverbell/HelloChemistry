@@ -40,7 +40,7 @@ Namespace chemicalFormula.parser.internal
 
             ' Initialize the element list
             _element.merge(formula._element)
-            _element.mult(factor)
+            _element.multiply(factor)
 
         End Sub
 

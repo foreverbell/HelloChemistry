@@ -19,7 +19,7 @@ Namespace chemicalFormula.parser.internal
             formula.parseFormula(stream)
 
             _element.merge(formula._element)
-            _element.mult(factor)
+            _element.multiply(factor)
 
         End Sub
 
