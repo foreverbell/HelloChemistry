@@ -118,6 +118,7 @@
     <Compile Include="general\INullable.vb" />
     <Compile Include="general\Observer.vb" />
     <Compile Include="general\Subject.vb" />
+    <Compile Include="matterState\enumMatterState.vb" />
     <Compile Include="temperature\clsNullTemperature.vb" />
     <Compile Include="temperature\clsTemperature.vb" />
     <Compile Include="formulaToken\token\clsFormulaToken.vb" />

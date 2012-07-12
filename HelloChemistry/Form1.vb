@@ -9,6 +9,7 @@ Imports HelloChemistry.chemicalEquation.parser
 Public Class Form1
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Dim f As clsChemicalFormula = clsChemicalFormulaParser.instance.parse("e{-}")
 
         Dim formula As clsChemicalFormula = clsChemicalFormulaParser.instance.parse("Fe2(SO4(5CuSO4·H2O)2)3·6H2O")
 
