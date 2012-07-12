@@ -1,4 +1,5 @@
 ﻿
+Imports HelloChemistry.element
 Imports HelloChemistry.formulaToken.char
 
 Namespace formulaToken.token
@@ -32,7 +33,11 @@ Namespace formulaToken.token
                 End If
             End If
 
-            Return True
+            If (clsElementManager.instance.hasElement(_elementSymbol)) Then
+                Return True
+            Else
+                Return False
+            End If
         End Function
 
         Public Function tokenType() As enumFormulaToken Implements IFormulaToken.tokenType

@@ -38,6 +38,15 @@ Namespace element
             End Get
         End Property
 
+        Public Function hasElement(ByVal symbol As String) As Boolean
+            For Each ele As clsElement In _elementList
+                If (ele.symbol = symbol) Then
+                    Return True
+                End If
+            Next
+            Return False
+        End Function
+
         Private Sub initializeElement()
             For index As Integer = 1 To ELEMENT_COUNT
                 Dim symbol As String
