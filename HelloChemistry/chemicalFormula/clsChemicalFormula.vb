@@ -24,7 +24,7 @@ Namespace chemicalFormula
 
         Public ReadOnly Property strChemicalFormula As String
             Get
-                Return _factor.ToString & _strChemicalFormula
+                Return IIf(factor = 1, "", factor.ToString) & _strChemicalFormula
             End Get
         End Property
 
