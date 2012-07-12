@@ -6,6 +6,7 @@ Namespace formulaToken.token
             {
                 New clsTokenElement,
                 New clsTokenNumber,
+                New clsTokenMatterState,
                 New clsTokenLeftBracket,
                 New clsTokenRightBracket,
                 New clsTokenLeftBracket2,

@@ -7,10 +7,11 @@ Namespace formulaToken.token
         Implements IFormulaToken
 
         Private _elementSymbol As String
+        Private _element As clsElement
 
-        Public ReadOnly Property elementSymbol As String
+        Public ReadOnly Property element As clsElement
             Get
-                Return _elementSymbol
+                Return _element
             End Get
         End Property
 
@@ -34,6 +35,7 @@ Namespace formulaToken.token
             End If
 
             If (clsElementManager.instance.hasElement(_elementSymbol)) Then
+                _element = clsElementManager.instance.element(_elementSymbol)
                 Return True
             Else
                 Return False

@@ -4,6 +4,15 @@ Namespace data
 
         Private Shared ReadOnly _instance As New clsDataReaderManager
 
+        Public Shared ReadOnly Property instance As clsDataReaderManager
+            Get
+                Return _instance
+            End Get
+        End Property
+
+        Private Sub New()
+        End Sub
+
         Private _dataReaderList As New List(Of clsDataReader) From
             {
                 New clsDataReader(enumDataReaderArgment.elementSymbol, My.Resources.resElement.symbol),
@@ -11,12 +20,6 @@ Namespace data
                 New clsDataReader(enumDataReaderArgment.elementElectronShell, My.Resources.resElement.shell),
                 New clsDataReader(enumDataReaderArgment.elementMeltingAndBoilingPoint, My.Resources.resElement.melting_boiling_point)
             }
-
-        Public Shared ReadOnly Property instance As clsDataReaderManager
-            Get
-                Return _instance
-            End Get
-        End Property
 
         Public ReadOnly Property dataReader(ByVal type As enumDataReaderArgment) As clsDataReader
             Get
@@ -28,8 +31,5 @@ Namespace data
                 Throw New ArgumentException("Bad data type.")
             End Get
         End Property
-
-        Private Sub New()
-        End Sub
     End Class
 End Namespace

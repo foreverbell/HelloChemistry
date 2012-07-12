@@ -4,17 +4,20 @@ Imports HelloChemistry.data
 Namespace element
 
     Public Class clsElementManager
-
-        Private Const ELEMENT_COUNT As Integer = 112
-
         Private Shared ReadOnly _instance As New clsElementManager
-        Private _elementList As New List(Of clsElement)
 
         Public Shared ReadOnly Property instance As clsElementManager
             Get
                 Return _instance
             End Get
         End Property
+
+        Private Sub New()
+            initializeElement()
+        End Sub
+
+        Private _elementList As New List(Of clsElement)
+        Private Const ELEMENT_COUNT As Integer = 112
 
         Public Overloads ReadOnly Property element(ByVal index As Integer) As clsElement
             Get
@@ -81,10 +84,6 @@ Namespace element
                 .dataReader(enumDataReaderArgment.elementElectronShell).Dispose()
                 .dataReader(enumDataReaderArgment.elementMeltingAndBoilingPoint).Dispose()
             End With
-        End Sub
-
-        Private Sub New()
-            initializeElement()
         End Sub
     End Class
 End Namespace

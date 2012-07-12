@@ -1,5 +1,7 @@
 ﻿
 Imports HelloChemistry.formulaToken
+Imports HelloChemistry.matterState
+Imports HelloChemistry.matterState.state
 
 Namespace chemicalFormula.parser.internal
 
@@ -7,6 +9,7 @@ Namespace chemicalFormula.parser.internal
         Protected Friend _element As New clsElementList
         Protected Friend _electron As Integer
         Protected Friend _expectedTokenList As New List(Of enumFormulaToken)
+        Protected Friend _matterState As IMatterState
 
         Public ReadOnly Property element As clsElementList
             Get

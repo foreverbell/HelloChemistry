@@ -8,14 +8,17 @@ Namespace temperature
 
         Private Shared ReadOnly _instance As New clsTemperatureManager
 
-        ' Optional temperature expression mode: Kelvins
-        Private _expressionMode As enumTemperatureExpressionMode = enumTemperatureExpressionMode.K
-
         Public Shared ReadOnly Property instance As clsTemperatureManager
             Get
                 Return _instance
             End Get
         End Property
+
+        Private Sub New()
+        End Sub
+
+        ' Optional temperature expression mode: Kelvins
+        Private _expressionMode As enumTemperatureExpressionMode = enumTemperatureExpressionMode.K
 
         Public Property expressionMode As enumTemperatureExpressionMode
             Get
@@ -48,8 +51,5 @@ Namespace temperature
 
             Return result
         End Function
-
-        Private Sub New()
-        End Sub
     End Class
 End Namespace

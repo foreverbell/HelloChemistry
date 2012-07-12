@@ -1,6 +1,4 @@
 ﻿
-Imports HelloChemistry.formulaToken.char
-
 Namespace formulaToken.token
     Public Class clsTokenElectron
         Implements IFormulaToken

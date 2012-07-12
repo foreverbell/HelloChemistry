@@ -1,24 +1,28 @@
 ﻿
-Namespace matterState
-    Public Class clsMatterStateLiquid
+Namespace matterState.state
+    Public Class clsMatterStateSolid
         Implements IMatterState
 
         Public ReadOnly Property matterStateName As String Implements IMatterState.matterStateName
             Get
-                Return "l"
+                Return "solid"
             End Get
         End Property
 
         Public ReadOnly Property matterStateNameWithBracket As String Implements IMatterState.matterStateNameWithBracket
             Get
-                Return "(l)"
+                Return "(s)"
             End Get
         End Property
 
         Public ReadOnly Property matterStateType As enumMatterState Implements IMatterState.matterStateType
             Get
-                Return enumMatterState.liquid
+                Return enumMatterState.solid
             End Get
         End Property
+
+        Public Function isNull() As Boolean Implements general.INullable.isNull
+            Return False
+        End Function
     End Class
 End Namespace

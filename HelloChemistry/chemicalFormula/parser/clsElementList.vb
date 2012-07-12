@@ -51,6 +51,7 @@ Namespace chemicalFormula.parser
 
             Debug.Print("All element divide " & factor.ToString)
         End Sub
+
         Public ReadOnly Property mass As Double
             Get
                 Dim keys As ICollection = _elementTable.Keys

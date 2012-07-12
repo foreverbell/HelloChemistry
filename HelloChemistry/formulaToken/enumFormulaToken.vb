@@ -3,6 +3,7 @@ Namespace formulaToken
     Public Enum enumFormulaToken
         tokenNumber
         tokenElement
+        tokenMatterState
         tokenLeftBracket
         tokenRightBracket
         tokenLeftBracket2

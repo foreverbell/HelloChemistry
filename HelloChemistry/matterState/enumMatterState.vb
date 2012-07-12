@@ -1,6 +1,7 @@
 ﻿
 Namespace matterState
     Public Enum enumMatterState
+        null
         solid
         liquid
         gas

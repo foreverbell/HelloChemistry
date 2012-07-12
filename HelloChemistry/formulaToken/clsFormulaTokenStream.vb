@@ -1,5 +1,7 @@
 ﻿
+Imports HelloChemistry.element
 Imports HelloChemistry.formulaToken.token
+Imports HelloChemistry.matterState.state
 
 Namespace formulaToken
 
@@ -58,9 +60,15 @@ Namespace formulaToken
             End Get
         End Property
 
-        Public ReadOnly Property element As String
+        Public ReadOnly Property element As clsElement
             Get
-                Return CType(_currentToken, clsTokenElement).elementSymbol
+                Return CType(_currentToken, clsTokenElement).element
+            End Get
+        End Property
+
+        Public ReadOnly Property matterState As IMatterState
+            Get
+                Return CType(_currentToken, clsTokenMatterState).stateType
             End Get
         End Property
 

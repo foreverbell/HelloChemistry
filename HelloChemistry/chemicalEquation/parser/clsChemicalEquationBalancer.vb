@@ -15,6 +15,9 @@ Namespace chemicalEquation.parser
             End Get
         End Property
 
+        Private Sub New()
+        End Sub
+
         Private _elementTotal As clsElementList
         Private _equation As clsChemicalEquation
         Private _matrix(,) As clsFraction
@@ -129,8 +132,5 @@ Namespace chemicalEquation.parser
             completeMatrix()
             Return solveEquationAndReturn()
         End Function
-
-        Private Sub New()
-        End Sub
     End Class
 End Namespace

@@ -12,6 +12,9 @@ Namespace chemicalEquation.parser
             End Get
         End Property
 
+        Private Sub New()
+        End Sub
+
         Public Function parse(ByVal stream As clsFormulaTokenStream) As clsChemicalEquation
             Dim _parser As New clsChemicalEquation1
             Dim startPos As Integer = stream.position
@@ -27,8 +30,5 @@ Namespace chemicalEquation.parser
             Debug.Print("Equation: " & equation)
             Return parse(New clsFormulaTokenStream(equation))
         End Function
-
-        Private Sub New()
-        End Sub
     End Class
 End Namespace

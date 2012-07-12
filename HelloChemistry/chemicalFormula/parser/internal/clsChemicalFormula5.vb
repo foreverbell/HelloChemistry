@@ -15,7 +15,7 @@ Namespace chemicalFormula.parser.internal
                 End If
 
                 ' Process the current element(optional factor = 1)
-                Dim currentElement As String = stream.element
+                Dim currentElement As String = stream.element.symbol
                 Dim currentNumber As Integer = 1
 
                 stream.lex()
