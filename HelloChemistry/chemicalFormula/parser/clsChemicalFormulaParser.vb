@@ -25,7 +25,10 @@ Namespace chemicalFormula.parser
 
             Dim strChemicalFormula As String = Mid(stream.formula, startPos + 1, stream.position - startPos)
 
-            Return New clsChemicalFormula(_parser._electron, strChemicalFormula, _parser._element)
+            Return New clsChemicalFormula(_parser._electron,
+                                          strChemicalFormula,
+                                          _parser._element,
+                                          _parser._matterState)
         End Function
 
         Public Function parse(ByVal formula As String) As clsChemicalFormula

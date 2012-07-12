@@ -1,5 +1,6 @@
 ﻿
 Imports HelloChemistry.chemicalFormula.parser
+Imports HelloChemistry.matterState.state
 
 Namespace chemicalFormula
 
@@ -8,6 +9,7 @@ Namespace chemicalFormula
         Private _strChemicalFormula As String
         Private _electron As Integer
         Private _element As clsElementList
+        Private _matterState As IMatterState
         Private _factor As Integer
 
         Public ReadOnly Property mass As Double
@@ -49,10 +51,12 @@ Namespace chemicalFormula
 
         Public Sub New(ByVal electron As Integer,
                        ByVal strChemicalFormula As String,
-                       ByVal element As clsElementList)
+                       ByVal element As clsElementList,
+                       ByVal matterState As IMatterState)
             _electron = electron
             _strChemicalFormula = strChemicalFormula
             _element = element
+            _matterState = matterState
             _factor = 1
         End Sub
     End Class

@@ -1,5 +1,6 @@
 ﻿
 Imports HelloChemistry.formulaToken
+Imports HelloChemistry.matterState
 
 Namespace chemicalFormula.parser.internal
 
@@ -31,6 +32,14 @@ Namespace chemicalFormula.parser.internal
                                 stream.matchNextToken(enumFormulaToken.tokenRightBracket2)
                                 stream.lex()
                             End If
+
+                            If (stream.nextTokenType = enumFormulaToken.tokenMatterState) Then
+                                _matterState = stream.matterState
+                                stream.lex()
+                            Else
+                                _matterState = clsMatterStateManager.instance.getNullMatterState()
+                            End If
+
                             Exit Do
                         End If
                     End If

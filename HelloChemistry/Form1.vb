@@ -17,7 +17,7 @@ Public Class Form1
 
         Debug.Print(a.matterStateName)
 
-        Dim formula As clsChemicalFormula = clsChemicalFormulaParser.instance.parse("Fe2(SO4(5CuSO4·H2O)2)3·6H2O")
+        Dim formula As clsChemicalFormula = clsChemicalFormulaParser.instance.parse("Fe2(SO4(5CuSO4·H2O)2)3·6H2O(aq)")
 
         Debug.Print("Fe2(SO4(5CuSO4·H2O)2)3·6H2O mass: " + formula.mass.ToString)
 
@@ -41,7 +41,7 @@ Public Class Form1
         ee = ee.balance()
         Debug.Print(ee.strChemicalEquation)
 
-        ee = clsChemicalEquationParser.instance.parse("Cu+HNO3=Cu(NO3)2+NO+H2O")
+        ee = clsChemicalEquationParser.instance.parse("Cu(s)+HNO3(aq)=Cu(NO3)2(aq)+NO(g)+H2O(l)")
         ee = ee.balance()
         Debug.Print(ee.strChemicalEquation)
     End Sub
