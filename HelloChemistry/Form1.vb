@@ -41,7 +41,8 @@ Public Class Form1
         ee = ee.balance()
         Debug.Print(ee.strChemicalEquation)
 
-        ee = clsChemicalEquationParser.instance.parse("Cu(s)+HNO3(aq)=Cu(NO3)2(aq)+NO(g)+H2O(l)")
+        ee = clsChemicalEquationParser.instance.parse("3Cu + 8HNO3 = 3Cu(NO3)2 + 2NO + 4H2O")
+        Debug.Print(clsChemicalEquationBalancedChecker.instance.checkBalanced(ee))
         ee = ee.balance()
         Debug.Print(ee.strChemicalEquation)
     End Sub
