@@ -8,7 +8,6 @@ Namespace formulaToken
         tokenRightBracket
         tokenLeftBracket2
         tokenRightBracket2
-        tokenPeriod
         tokenPlus
         tokenMinus
         tokenEqual

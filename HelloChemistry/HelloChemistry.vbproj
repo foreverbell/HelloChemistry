@@ -141,10 +141,8 @@
     <Compile Include="formulaToken\char\clsCharLeftBracket.vb" />
     <Compile Include="formulaToken\char\clsCharLowerCase.vb" />
     <Compile Include="formulaToken\char\clsCharNumber.vb" />
-    <Compile Include="formulaToken\char\clsCharPeriod.vb" />
     <Compile Include="formulaToken\char\clsCharRightBracket.vb" />
     <Compile Include="formulaToken\char\clsCharUpperCase.vb" />
-    <Compile Include="formulaToken\token\clsTokenPeriod.vb" />
     <Compile Include="formulaToken\char\enumFormulaChar.vb" />
     <Compile Include="formulaToken\char\IFormulaChar.vb" />
     <Compile Include="formulaToken\token\IFormulaToken.vb" />

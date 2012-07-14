@@ -12,7 +12,6 @@ Namespace formulaToken.char
                 New clsCharRightBracket,
                 New clsCharLeftBracket2,
                 New clsCharRightBracket2,
-                New clsCharPeriod,
                 New clsCharPlus,
                 New clsCharMinus,
                 New clsCharEqual

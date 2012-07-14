@@ -11,15 +11,9 @@ Imports HelloChemistry.matterState.state
 Public Class Form1
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Dim formula As clsChemicalFormula = clsChemicalFormulaParser.instance.parse("Fe2(SO4(5CuSO4)2)3(aq)")
 
-        Dim f As New clsFormulaTokenStream("(s)")
-        Dim a As IMatterState = f.matterState
-
-        Debug.Print(a.matterStateName)
-
-        Dim formula As clsChemicalFormula = clsChemicalFormulaParser.instance.parse("Fe2(SO4(5CuSO4·H2O)2)3·6H2O(aq)")
-
-        Debug.Print("Fe2(SO4(5CuSO4·H2O)2)3·6H2O mass: " + formula.mass.ToString)
+        Debug.Print("Fe2(SO4(5CuSO4)2)3 mass: " + formula.mass.ToString)
 
         formula = clsChemicalFormulaParser.instance.parse("AlO2{-}")
         Debug.Print(formula.electron)

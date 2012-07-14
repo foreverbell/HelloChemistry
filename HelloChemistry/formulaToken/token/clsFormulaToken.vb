@@ -11,7 +11,6 @@ Namespace formulaToken.token
                 New clsTokenRightBracket,
                 New clsTokenLeftBracket2,
                 New clsTokenRightBracket2,
-                New clsTokenPeriod,
                 New clsTokenPlus,
                 New clsTokenMinus,
                 New clsTokenEqual,
