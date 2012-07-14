@@ -29,7 +29,7 @@ Namespace matterState
                     Return m
                 End If
             Next
-            Return New clsMatterStateNull
+            Return _nullMatterState
         End Function
 
         Public Function getNullMatterState()
