@@ -10,6 +10,7 @@ Namespace chemicalFormula.parser.internal
         Protected Friend _electron As Integer
         Protected Friend _expectedTokenList As New List(Of enumFormulaToken)
         Protected Friend _matterState As IMatterState
+        Protected Friend _factor As Integer
 
         Public ReadOnly Property element As clsElementList
             Get

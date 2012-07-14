@@ -52,12 +52,13 @@ Namespace chemicalFormula
         Public Sub New(ByVal electron As Integer,
                        ByVal strChemicalFormula As String,
                        ByVal element As clsElementList,
-                       ByVal matterState As IMatterState)
+                       ByVal matterState As IMatterState,
+                       ByVal factor As Integer)
             _electron = electron
             _strChemicalFormula = strChemicalFormula
             _element = element
             _matterState = matterState
-            _factor = 1
+            _factor = factor
         End Sub
     End Class
 End Namespace

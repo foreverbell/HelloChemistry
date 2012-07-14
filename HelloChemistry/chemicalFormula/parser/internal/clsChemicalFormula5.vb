@@ -18,13 +18,13 @@ Namespace chemicalFormula.parser.internal
                 Dim currentElement As String = stream.element.symbol
                 Dim currentNumber As Integer = 1
 
-                stream.lex()
+                stream.lex(True)
 
                 ' Process the factor if it exists
                 If (Not stream.isEnd()) Then
                     If (stream.nextTokenType = enumFormulaToken.tokenNumber) Then
                         currentNumber = stream.number
-                        stream.lex()
+                        stream.lex(True)
                     End If
                 End If
 

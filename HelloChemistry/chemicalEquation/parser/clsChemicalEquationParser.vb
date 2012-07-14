@@ -16,14 +16,17 @@ Namespace chemicalEquation.parser
         End Sub
 
         Public Function parse(ByVal stream As clsFormulaTokenStream) As clsChemicalEquation
-            Dim _parser As New clsChemicalEquation1
-            Dim startPos As Integer = stream.position
+            Dim parser As New clsChemicalEquation1
 
-            _parser.parseEquation(stream)
+            stream.addRecorder()
+            parser.parseEquation(stream)
 
-            Dim strChemicalEquation As String = Mid(stream.formula, startPos + 1, stream.position - startPos)
+            Dim strChemicalEquation As String = stream.getRecordResult
 
-            Return New clsChemicalEquation(_parser.leftList, _parser.rightList, strChemicalEquation, False)
+            Return New clsChemicalEquation(parser.leftList,
+                                           parser.rightList,
+                                           strChemicalEquation,
+                                           False)
         End Function
 
         Public Function parse(ByVal equation As String) As clsChemicalEquation

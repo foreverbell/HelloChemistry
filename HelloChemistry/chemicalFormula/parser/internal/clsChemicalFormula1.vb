@@ -8,38 +8,36 @@ Namespace chemicalFormula.parser.internal
         Inherits clsChemicalFormula0
 
         Public Overrides Sub parseFormula(ByVal stream As formulaToken.clsFormulaTokenStream)
-            If (stream.nextTokenType = enumFormulaToken.tokenElectron) Then
-                stream.lex()
-                _electron = -1
-            Else
-                Do
-                    Dim formula As New clsChemicalFormula2
-                    formula.parseFormula(stream)
+            Do
+                Dim formula As New clsChemicalFormula2
+                formula.parseFormula(stream)
 
-                    _element.merge(formula._element)
-                    If (Not stream.isEnd()) Then
-                        If (stream.nextTokenType = enumFormulaToken.tokenLeftBracket2) Then
-                            stream.lex()
+                _element.merge(formula._element)
+                _factor = formula._factor
+                _electron = formula._electron
 
-                            Dim formulaElectron As New clsChemicalFormulaIon
-                            formulaElectron.parseFormula(stream)
-                            _electron = formulaElectron._electron
+                If (Not stream.isEnd()) Then
+                    If (stream.nextTokenType = enumFormulaToken.tokenLeftBracket2) Then
+                        stream.lex(True)
 
-                            stream.matchNextToken(enumFormulaToken.tokenRightBracket2)
-                            stream.lex()
-                        End If
+                        Dim formulaElectron As New clsChemicalFormulaIon
+                        formulaElectron.parseFormula(stream)
+                        _electron = formulaElectron._electron * _factor
 
-                        If (stream.nextTokenType = enumFormulaToken.tokenMatterState) Then
-                            _matterState = stream.matterState
-                            stream.lex()
-                        Else
-                            _matterState = clsMatterStateManager.instance.getNullMatterState()
-                        End If
-
-                        Exit Do
+                        stream.matchNextToken(enumFormulaToken.tokenRightBracket2)
+                        stream.lex(True)
                     End If
-                Loop Until (stream.isEnd())
-            End If
+
+                    If (stream.nextTokenType = enumFormulaToken.tokenMatterState) Then
+                        _matterState = stream.matterState
+                        stream.lex(True)
+                    Else
+                        _matterState = clsMatterStateManager.instance.getNullMatterState()
+                    End If
+
+                    Exit Do
+                End If
+            Loop Until (stream.isEnd())
         End Sub
 
         Public Overrides Sub initializeExpectedTokenList()

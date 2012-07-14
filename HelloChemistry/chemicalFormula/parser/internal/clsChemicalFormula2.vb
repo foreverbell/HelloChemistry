@@ -12,21 +12,28 @@ Namespace chemicalFormula.parser.internal
 
             If (stream.nextTokenType = enumFormulaToken.tokenNumber) Then
                 factor = stream.number
-                stream.lex()
+                stream.lex(False)
             End If
+            _factor = factor
 
-            Dim formula As New clsChemicalFormula3
-            formula.parseFormula(stream)
+            If (stream.nextTokenType = enumFormulaToken.tokenElectron) Then
+                stream.lex(True)
+                _electron = -1
+                If (stream.nextTokenType = enumFormulaToken.tokenLeftBracket2) Then isExpectedToken(stream)
+            Else
+                Dim formula As New clsChemicalFormula3
+                formula.parseFormula(stream)
 
-            _element.merge(formula._element)
-            _element.multiply(factor)
-
+                _element.merge(formula._element)
+                _element.multiply(factor)
+            End If
         End Sub
 
         Public Overrides Sub initializeExpectedTokenList()
             With _expectedTokenList
                 .Add(enumFormulaToken.tokenElement)
                 .Add(enumFormulaToken.tokenNumber)
+                .Add(enumFormulaToken.tokenElectron)
             End With
         End Sub
     End Class

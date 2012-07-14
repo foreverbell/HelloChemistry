@@ -18,5 +18,9 @@ Namespace formulaToken.token
         Public Function tokenType() As enumFormulaToken Implements IFormulaToken.tokenType
             Return enumFormulaToken.tokenRightBracket2
         End Function
+
+        Public Function toStr() As String Implements IFormulaToken.toStr
+            Return "}"
+        End Function
     End Class
 End Namespace

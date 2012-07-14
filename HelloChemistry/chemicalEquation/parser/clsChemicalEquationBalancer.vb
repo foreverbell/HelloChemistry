@@ -101,15 +101,15 @@ Namespace chemicalEquation.parser
                 pointer = 0
                 For Each f As clsChemicalFormula In _equation.leftList
                     pointer += 1
-                    retStr &= IIf(result(pointer) = 1, "", result(pointer).ToString) & f.strChemicalFormula & " + "
-                    f.factor = result(pointer)
+                    f.factor *= result(pointer)
+                    retStr &= f.strChemicalFormula & " + "
                     retEquationLeftList.Add(f)
                 Next
                 retStr = Left(retStr, retStr.Length - 3) & " = "
                 For Each f As clsChemicalFormula In _equation.rightList
                     pointer += 1
-                    retStr &= IIf(result(pointer) = 1, "", result(pointer).ToString) & f.strChemicalFormula & " + "
-                    f.factor = result(pointer)
+                    f.factor *= result(pointer)
+                    retStr &= f.strChemicalFormula & " + "
                     retEquationRightList.Add(f)
                 Next
                 retStr = Left(retStr, retStr.Length - 3)

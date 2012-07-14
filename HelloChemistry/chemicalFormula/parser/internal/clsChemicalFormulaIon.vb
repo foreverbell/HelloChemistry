@@ -17,7 +17,7 @@ Namespace chemicalFormula.parser.internal
         Public Overrides Sub parseFormula(ByVal stream As clsFormulaTokenStream)
             If (stream.nextTokenType = enumFormulaToken.tokenNumber) Then
                 _electron = stream.number
-                stream.lex()
+                stream.lex(True)
             Else
                 _electron = 1
             End If
@@ -27,7 +27,7 @@ Namespace chemicalFormula.parser.internal
             If (stream.nextTokenType = enumFormulaToken.tokenMinus) Then
                 _electron = -_electron
             End If
-            stream.lex()
+            stream.lex(True)
         End Sub
     End Class
 End Namespace

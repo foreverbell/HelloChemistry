@@ -13,9 +13,19 @@ Namespace formulaToken
         Private _position As Integer
         Private _endFlag As Boolean
         Private _currentToken As IFormulaToken
+        Private _strStack As New Stack(Of String)
 
-        Public Sub lex()
+        Public Sub lex(ByVal recorded As Boolean)
             Debug.Assert(Not isEnd())
+
+            If (recorded) Then
+                If (Not (_strStack.Count = 0)) Then
+                    Dim oldStr As String = _strStack.Pop()
+                    oldStr &= _currentToken.toStr()
+                    _strStack.Push(oldStr)
+                End If
+            End If
+
             If (_position >= _length) Then
                 _oldPosition = _position
                 _endFlag = True
@@ -72,13 +82,27 @@ Namespace formulaToken
             End Get
         End Property
 
+        Public Sub addRecorder()
+            _strStack.Push("")
+        End Sub
+
+        Public Function getRecordResult() As String
+            Dim ret As String = _strStack.Pop()
+            If (Not (_strStack.Count = 0)) Then
+                Dim oldStr As String = _strStack.Pop()
+                oldStr &= ret
+                _strStack.Push(oldStr)
+            End If
+            Return ret
+        End Function
+
         Public Sub New(ByVal formula As String)
             ' Removing white space
             _formula = Replace(formula, " ", "")
 
             _position = 0
             _length = _formula.Length
-            lex()
+            lex(False)
         End Sub
     End Class
 End Namespace
