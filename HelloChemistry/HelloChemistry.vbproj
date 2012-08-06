@@ -88,6 +88,8 @@
   <ItemGroup>
     <Compile Include="algorithm\clsGaussJordanElimination.vb" />
     <Compile Include="chemicalEquation\clsChemicalEquation.vb" />
+    <Compile Include="chemicalEquation\heat\clsHeatEquation.vb" />
+    <Compile Include="chemicalEquation\heat\clsHeatEquationSolver.vb" />
     <Compile Include="chemicalEquation\parser\clsChemicalEquationBalancedChecker.vb" />
     <Compile Include="chemicalEquation\parser\clsChemicalEquationBalancer.vb" />
     <Compile Include="chemicalEquation\parser\clsChemicalEquationParser.vb" />

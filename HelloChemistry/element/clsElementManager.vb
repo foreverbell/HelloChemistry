@@ -2,8 +2,9 @@
 Imports HelloChemistry.data
 
 Namespace element
-
     Public Class clsElementManager
+
+#Region "Sington Pattern"
         Private Shared ReadOnly _instance As New clsElementManager
 
         Public Shared ReadOnly Property instance As clsElementManager
@@ -15,6 +16,7 @@ Namespace element
         Private Sub New()
             initializeElement()
         End Sub
+#End Region
 
         Private _elementList As New List(Of clsElement)
         Private Const ELEMENT_COUNT As Integer = 112

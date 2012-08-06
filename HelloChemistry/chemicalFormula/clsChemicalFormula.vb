@@ -36,6 +36,12 @@ Namespace chemicalFormula
             End Get
         End Property
 
+        Public ReadOnly Property matterState As IMatterState
+            Get
+                Return _matterState
+            End Get
+        End Property
+
         Public Property factor As Integer
             Get
                 Return _factor

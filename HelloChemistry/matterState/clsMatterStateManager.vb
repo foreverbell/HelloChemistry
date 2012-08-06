@@ -3,6 +3,7 @@ Imports HelloChemistry.matterState.state
 
 Namespace matterState
     Public Class clsMatterStateManager
+#Region "Sington Pattern"
         Private Shared ReadOnly _instance As New clsMatterStateManager
 
         Public Shared ReadOnly Property instance As clsMatterStateManager
@@ -13,6 +14,7 @@ Namespace matterState
 
         Private Sub New()
         End Sub
+#End Region
 
         Private _matterStateList As New List(Of IMatterState) From
             {

@@ -2,6 +2,7 @@
 Namespace data
     Public Class clsDataReaderManager
 
+#Region "Sington Pattern"
         Private Shared ReadOnly _instance As New clsDataReaderManager
 
         Public Shared ReadOnly Property instance As clsDataReaderManager
@@ -12,6 +13,7 @@ Namespace data
 
         Private Sub New()
         End Sub
+#End Region
 
         Private _dataReaderList As New List(Of clsDataReader) From
             {

@@ -6,6 +6,7 @@ Namespace chemicalFormula.parser
 
     Public Class clsChemicalFormulaParser
 
+#Region "Sington Pattern"
         Private Shared ReadOnly _instance As New clsChemicalFormulaParser
 
         Public Shared ReadOnly Property instance As clsChemicalFormulaParser
@@ -16,6 +17,7 @@ Namespace chemicalFormula.parser
 
         Private Sub New()
         End Sub
+#End Region
 
         Public Function parse(ByVal stream As clsFormulaTokenStream) As clsChemicalFormula
             Dim parser As New clsChemicalFormula1

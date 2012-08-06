@@ -4,6 +4,8 @@ Imports HelloChemistry.chemicalEquation.parser.internal
 
 Namespace chemicalEquation.parser
     Public Class clsChemicalEquationParser
+
+#Region "Sington Pattern"
         Private Shared ReadOnly _instance As New clsChemicalEquationParser
 
         Public Shared ReadOnly Property instance As clsChemicalEquationParser
@@ -14,6 +16,7 @@ Namespace chemicalEquation.parser
 
         Private Sub New()
         End Sub
+#End Region
 
         Public Function parse(ByVal stream As clsFormulaTokenStream) As clsChemicalEquation
             Dim parser As New clsChemicalEquation1

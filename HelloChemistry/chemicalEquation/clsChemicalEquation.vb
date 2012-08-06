@@ -36,6 +36,14 @@ Namespace chemicalEquation
             End If
         End Function
 
+        Public Function isBalanced() As Boolean
+            If (Not _balanced) Then
+                Dim result As Boolean = clsChemicalEquationBalancedChecker.instance.checkBalanced(Me)
+                _balanced = result
+            End If
+            Return _balanced
+        End Function
+
         Public Sub New(ByVal leftList As List(Of clsChemicalFormula),
                        ByVal rightList As List(Of clsChemicalFormula),
                        ByVal strChemicalEqualtion As String,

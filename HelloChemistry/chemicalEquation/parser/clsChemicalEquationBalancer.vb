@@ -7,6 +7,7 @@ Imports HelloChemistry.chemicalFormula.parser
 Namespace chemicalEquation.parser
     Public Class clsChemicalEquationBalancer
 
+#Region "Sington Pattern"
         Private Shared ReadOnly _instance As New clsChemicalEquationBalancer
 
         Public Shared ReadOnly Property instance As clsChemicalEquationBalancer
@@ -17,6 +18,7 @@ Namespace chemicalEquation.parser
 
         Private Sub New()
         End Sub
+#End Region
 
         Private _elementTotal As clsElementList
         Private _equation As clsChemicalEquation
