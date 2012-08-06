@@ -24,16 +24,12 @@ Namespace chemicalEquation.parser
             stream.addRecorder()
             parser.parseEquation(stream)
 
-            Dim strChemicalEquation As String = stream.getRecordResult
-
             Return New clsChemicalEquation(parser.leftList,
                                            parser.rightList,
-                                           strChemicalEquation,
                                            False)
         End Function
 
         Public Function parse(ByVal equation As String) As clsChemicalEquation
-            Debug.Print("Equation: " & equation)
             Return parse(New clsFormulaTokenStream(equation))
         End Function
     End Class

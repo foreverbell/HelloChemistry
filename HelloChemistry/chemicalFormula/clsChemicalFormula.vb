@@ -6,7 +6,7 @@ Namespace chemicalFormula
 
     Public Class clsChemicalFormula
 
-        Private _strChemicalFormula As String
+        Private _strFormula As String
         Private _electron As Integer
         Private _element As clsElementList
         Private _matterState As IMatterState
@@ -24,9 +24,15 @@ Namespace chemicalFormula
             End Get
         End Property
 
-        Public ReadOnly Property strChemicalFormula As String
+        Public ReadOnly Property strFormula As String
             Get
-                Return IIf(factor = 1, "", factor.ToString) & _strChemicalFormula
+                Return IIf(factor = 1, "", factor.ToString) & _strFormula
+            End Get
+        End Property
+
+        Public ReadOnly Property strFormulaWithoutFactor As String
+            Get
+                Return _strFormula
             End Get
         End Property
 
@@ -56,12 +62,12 @@ Namespace chemicalFormula
         End Property
 
         Public Sub New(ByVal electron As Integer,
-                       ByVal strChemicalFormula As String,
+                       ByVal strFormula As String,
                        ByVal element As clsElementList,
                        ByVal matterState As IMatterState,
                        ByVal factor As Integer)
             _electron = electron
-            _strChemicalFormula = strChemicalFormula
+            _strFormula = strFormula
             _element = element
             _matterState = matterState
             _factor = factor

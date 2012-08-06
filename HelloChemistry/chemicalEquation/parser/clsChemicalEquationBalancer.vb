@@ -93,36 +93,29 @@ Namespace chemicalEquation.parser
         Private Function solveEquationAndReturn()
             ' Solve the equations
             Dim solve(0) As clsFraction, result(0) As Integer
-            Dim retStr As String = vbNullString
             Dim retEquationLeftList As New List(Of clsChemicalFormula)
             Dim retEquationRightList As New List(Of clsChemicalFormula)
             Dim pointer As Integer
             If (clsGaussJordanElimination.gaussJordanElimination(_matrix, solve)) Then
-                result = clsFraction.simple(solve)
+                result = clsFraction.simplify(solve)
                 ' Reform the expression
                 pointer = 0
                 For Each f As clsChemicalFormula In _equation.leftList
                     pointer += 1
                     f.factor *= result(pointer)
-                    retStr &= f.strChemicalFormula & " + "
                     retEquationLeftList.Add(f)
                 Next
-                retStr = Left(retStr, retStr.Length - 3) & " = "
                 For Each f As clsChemicalFormula In _equation.rightList
                     pointer += 1
                     f.factor *= result(pointer)
-                    retStr &= f.strChemicalFormula & " + "
                     retEquationRightList.Add(f)
                 Next
-                retStr = Left(retStr, retStr.Length - 3)
 
-                Debug.Print("Balanced equation: " & retStr)
                 Return New clsChemicalEquation(retEquationLeftList,
                                                retEquationRightList,
-                                               retStr,
                                                True)
             Else
-                Throw New Exception("Information not enough, balance equation " + _equation.strChemicalEquation + "failed.")
+                Throw New Exception("Information not enough, balance equation " + _equation.strEquation + "failed.")
             End If
         End Function
 

@@ -58,7 +58,7 @@ Namespace fraction
         End Operator
 
         ' multiply all fractions with a factor to be the simplest
-        Public Shared Function simple(ByVal fraction() As clsFraction) As Integer()
+        Public Shared Function simplify(ByVal fraction() As clsFraction) As Integer()
             Dim factor As Integer = 1
             Dim bound As Integer = UBound(fraction)
 
