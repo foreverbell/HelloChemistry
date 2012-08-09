@@ -5,7 +5,7 @@ Imports HelloChemistry.chemicalEquation.parser.internal
 Namespace chemicalEquation.parser
     Public Class clsChemicalEquationParser
 
-#Region "Sington Pattern"
+#Region "Singleton Pattern"
         Private Shared ReadOnly _instance As New clsChemicalEquationParser
 
         Public Shared ReadOnly Property instance As clsChemicalEquationParser

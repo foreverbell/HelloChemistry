@@ -2,7 +2,7 @@
 Namespace data
     Public Class clsDataReaderManager
 
-#Region "Sington Pattern"
+#Region "Singleton Pattern"
         Private Shared ReadOnly _instance As New clsDataReaderManager
 
         Public Shared ReadOnly Property instance As clsDataReaderManager

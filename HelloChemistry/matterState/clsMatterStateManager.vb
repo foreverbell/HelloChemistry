@@ -3,7 +3,7 @@ Imports HelloChemistry.matterState.state
 
 Namespace matterState
     Public Class clsMatterStateManager
-#Region "Sington Pattern"
+#Region "Singleton Pattern"
         Private Shared ReadOnly _instance As New clsMatterStateManager
 
         Public Shared ReadOnly Property instance As clsMatterStateManager

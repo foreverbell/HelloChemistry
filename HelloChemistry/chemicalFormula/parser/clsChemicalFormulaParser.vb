@@ -6,7 +6,7 @@ Namespace chemicalFormula.parser
 
     Public Class clsChemicalFormulaParser
 
-#Region "Sington Pattern"
+#Region "Singleton Pattern"
         Private Shared ReadOnly _instance As New clsChemicalFormulaParser
 
         Public Shared ReadOnly Property instance As clsChemicalFormulaParser

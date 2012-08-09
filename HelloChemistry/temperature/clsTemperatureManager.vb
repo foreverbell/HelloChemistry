@@ -6,7 +6,7 @@ Namespace temperature
     Public Class clsTemperatureManager
         Inherits Subject
 
-#Region "Sington Pattern"
+#Region "Singleton Pattern"
         Private Shared ReadOnly _instance As New clsTemperatureManager
 
         Public Shared ReadOnly Property instance As clsTemperatureManager

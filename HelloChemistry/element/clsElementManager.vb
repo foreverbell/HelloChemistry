@@ -4,7 +4,7 @@ Imports HelloChemistry.data
 Namespace element
     Public Class clsElementManager
 
-#Region "Sington Pattern"
+#Region "Singleton Pattern"
         Private Shared ReadOnly _instance As New clsElementManager
 
         Public Shared ReadOnly Property instance As clsElementManager

@@ -6,7 +6,7 @@ Imports HelloChemistry.algorithm
 Namespace chemicalEquation.heat
     Public Class clsHeatEquationSolver
 
-#Region "Sington Pattern"
+#Region "Singleton Pattern"
         Private Shared ReadOnly _instance As New clsHeatEquationSolver
 
         Public Shared ReadOnly Property instance As clsHeatEquationSolver
