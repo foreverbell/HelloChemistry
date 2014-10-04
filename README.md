@@ -6,7 +6,7 @@ A useful utility for those lazy guys who have trouble solving boring chemistry p
 
 1. Compute molecular weight;
 
-  CuSO4¡¤5H2O  --->  232
+  CuSO4Â·5H2O  --->  232
 
 2. Balance the chemical equation.
 
